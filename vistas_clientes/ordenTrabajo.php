@@ -79,7 +79,7 @@
             <br><br>
             <div class="recent--patients">
                 <div class="title">
-                    <h2 class="section--title">MARCAS</h2>
+                    <h2 class="section--title">OT</h2>
                 </div>                   
                 <br><br><br>                     
                     

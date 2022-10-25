@@ -13,13 +13,13 @@ $marca = htmlspecialchars($_REQUEST['marca']);
 $estado_equipo = htmlspecialchars($_REQUEST['estado_equipo']);
 $hora_inicio = htmlspecialchars($_REQUEST['hora_inicio']);
 $hora_finalizacion = htmlspecialchars($_REQUEST['hora_finalizacion']);
-$repuestos_sugeridos = htmlspecialchars($_REQUEST['repuestos_sugeridos']);
+
 
 include '../conexion/conn.php';
 $conf = new Configuracion();
 $conf->conectar();
 
-$sql = "insert into orden_trabajo (codigo_orden_trabajo,tipo_orden_trabajo,cliente,sucursal,persona_encargada,tecnico,observaciones,fecha_orden_trabajo,equipo,marca,estado_equipo,hora_inicio,hora_finalizacion,repuestos_sugeridos) values ('$codigo_orden_trabajo','$tipo_orden_trabajo','$cliente','$sucursal','$persona_encargada','$tecnico','$observaciones','$fecha_orden_trabajo','$equipo','$marca','$estado_equipo','$hora_inicio','$hora_finalizacion','$repuestos_sugeridos')";
+$sql = "insert into orden_trabajo (codigo_orden_trabajo,tipo_orden_trabajo,cliente,sucursal,persona_encargada,tecnico,observaciones,fecha_orden_trabajo,equipo,marca,estado_equipo,hora_inicio,hora_finalizacion) values ('$codigo_orden_trabajo','$tipo_orden_trabajo','$cliente','$sucursal','$persona_encargada','$tecnico','$observaciones','$fecha_orden_trabajo','$equipo','$marca','$estado_equipo','$hora_inicio','$hora_finalizacion')";
 $query = mysqli_query($conf->conectar(),$sql);
 echo json_encode(array(
 	'codigo_orden_trabajo' => $codigo_orden_trabajo,
@@ -34,8 +34,7 @@ echo json_encode(array(
 	'marca' => $marca,
 	'estado_equipo' => $estado_equipo,
 	'hora_inicio' => $hora_inicio,
-	'hora_finalizacion' => $hora_finalizacion,
-	'repuestos_sugeridos' => $repuestos_sugeridos
+	'hora_finalizacion' => $hora_finalizacion
 
 ));
 ?>

@@ -4,6 +4,11 @@
     header("Location:../../login/index.php");
     exit(0);
   }
+
+  include '../conexion/conn.php';
+    $conf = new Configuracion();
+    $conf->conectar();
+  $query1=mysqli_query($conf->conectar(),"SELECT primer_nombre From contacto_cliente")
 ?>
 <!DOCTYPE html>
 <html>
@@ -30,6 +35,7 @@
                 <th field="email" width="50">Email</th>
                 <th field="telefono" width="50">Telefono</th>
                 <th field="direccion" width="50">Direccion</th>
+                <th field="contacto_cliente" width="50">Contacto_cliente</th>
                 
             </tr>
         </thead>
@@ -63,7 +69,19 @@
             <div style="margin-bottom:10px">
                 <input name="direccion" class="easyui-textbox" required="true" label="Direccion:" labelPosition="top" style="width:100%">
             </div>
-            
+            <div style="margin-bottom:10px">
+            <select class="easyui-combobox" name="contacto_cliente" label="Contacto Cliente:" labelPosition="top" style="width:100%" require="true">
+                 <option value="Seleccione...">Seleccione...</option>
+                 <?php
+                     while($datos = mysqli_fetch_array($query1))
+                     {
+                 ?>
+                        <option value="<?php echo $datos['primer_nombre']?>"> <?php echo $datos['primer_nombre']?> </option>
+                 <?php
+                     }
+                 ?>
+            </select>
+            </div>
         </form>
     </div>
     <div id="dlg-buttons">

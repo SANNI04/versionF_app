@@ -1,5 +1,6 @@
 <?php
   session_start();
+
   if (!isset($_SESSION['usuario'])) {
     header("Location:../../login/index.php");
     exit(0);
@@ -36,7 +37,6 @@
             rownumbers="true" fitColumns="true" singleSelect="true">
         <thead>
             <tr>
-		<th field="index_id" width="50">Id</th>
                 <th field="numero_remision" width="50">Numero Remision</th>
                 <th field="fecha" width="50">Fecha</th>
                 <th field="cliente" width="50">Cliente</th>

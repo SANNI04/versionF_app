@@ -2,6 +2,8 @@
 
   session_start();
 
+  $nombre =  $_SESSION["nombre"];
+
   if (!isset($_SESSION['usuario'])) {
     header("Location:../../login/index.php");
     exit(0);
@@ -12,12 +14,13 @@
     $conf->conectar();
     //$query=mysqli_query($conf->conectar(), "SELECT codigo_referencia from referencias");
 
-    $query=mysqli_query($conf->conectar(), "SELECT nombre_cliente from clientes");
-    $query1=mysqli_query($conf->conectar(), "SELECT nombre_sucursal from sucursal_cliente");
-    $query2=mysqli_query($conf->conectar(), "SELECT primer_nombre from usuarios");
-    $query3=mysqli_query($conf->conectar(), "SELECT nombre_modelo from equipos");
-    $query4=mysqli_query($conf->conectar(), "SELECT marca from tipos_marca");
-    $query5=mysqli_query($conf->conectar(), "SELECT primer_nombre from usuarios");
+    $query=mysqli_query($conf->conectar(), "SELECT nombre_cliente from clientes c join usuarios u on contacto_cliente=primer_nombre;");
+    $query1=mysqli_query($conf->conectar(), "SELECT nombre_sucursal from sucursal_cliente s join usuarios u on contacto_cliente=primer_nombre;");
+    $query2=mysqli_query($conf->conectar(), "SELECT primer_nombre from contacto_cliente c join clientes cl on c.primer_nombre=cl.contacto_cliente;");
+    $query3=mysqli_query($conf->conectar(), "SELECT primer_nombre from usuarios where role_id =3;");
+    $query4=mysqli_query($conf->conectar(), "SELECT nombre_modelo from equipos");
+    $query5=mysqli_query($conf->conectar(), "SELECT marca from tipos_marca");
+    
 ?>
 
 <!DOCTYPE html>
@@ -54,7 +57,6 @@
                 <th field="estado_equipo" width="50">Estado Equipo</th>
                 <th field="hora_inicio" width="50">Hora Inicio</th>
                 <th field="hora_finalizacion" width="50">Hora Finalizacion</th>
-                <th field="repuestos_sugeridos" width="50">Repuestos Sugeridos</th>
 
             </tr>
         </thead>
@@ -116,7 +118,7 @@
             <select class="easyui-combobox" name="tecnico" label="Tecnico:" labelPosition="top" style="width:100%" require="true">
                  <option value="Seleccione...">Seleccione...</option>
                  <?php
-                     while($datos = mysqli_fetch_array($query5))
+                     while($datos = mysqli_fetch_array($query3))
                      {
                  ?>
                         <option value="<?php echo $datos['primer_nombre']?>"> <?php echo $datos['primer_nombre']?> </option>
@@ -135,7 +137,7 @@
             <select class="easyui-combobox" name="equipo" label="Equipo:" labelPosition="top" style="width:100%" require="true">
                  <option value="Seleccione...">Seleccione...</option>
                  <?php
-                     while($datos = mysqli_fetch_array($query3))
+                     while($datos = mysqli_fetch_array($query4))
                      {
                  ?>
                         <option value="<?php echo $datos['nombre_modelo']?>"> <?php echo $datos['nombre_modelo']?> </option>
@@ -148,7 +150,7 @@
             <select class="easyui-combobox" name="marca" label="Marca:" labelPosition="top" style="width:100%" require="true">
                  <option value="Seleccione...">Seleccione...</option>
                  <?php
-                     while($datos = mysqli_fetch_array($query4))
+                     while($datos = mysqli_fetch_array($query5))
                      {
                  ?>
                         <option value="<?php echo $datos['marca']?>"> <?php echo $datos['marca']?> </option>
@@ -166,10 +168,6 @@
             <div style="margin-bottom:10px">
                 <input type='time' name="hora_finalizacion" class="easyui-textbox" label="Hora Finalizacion" labelPosition="top" style="width:100%">
             </div>
-            <div style="margin-bottom:10px">
-                <input name="repuestos_sugeridos" class="easyui-textbox" required="true" label="Repuestos Sugeridos" labelPosition="top" style="width:100%">
-            </div>
-            
         </form>
     </div>
     <div id="dlg-buttons">

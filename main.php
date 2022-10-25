@@ -30,12 +30,12 @@ if(!isset($_SESSION["usuario"]) || $_SESSION["usuario"] !== true){
             <div class="picon profile">
             <img src="login/images/logo.png" alt="">
         </div>
-                 <li>
+                 <!--<li>
                     <a href="login/logout.php">
                         <span class="icon icon-8" style="position: absolute;right: 20px"><i class="ri-logout-box-line">Cerrar sesión</i></span>
                         
                     </a>
-                </li>
+                </li>-->
         </div>
     </section>
     <section class="main">

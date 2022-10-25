@@ -37,7 +37,7 @@
             rownumbers="true" fitColumns="true" singleSelect="true">
         <thead>
             <tr>
-		<th field="index_id" width="50">Id</th>
+		
                 <th field="cod_cotizacion" width="50">Codigo Cotización</th>
                 <th field="fecha_cotizacion" width="50">Fecha Cotización</th>
                 <th field="hoja_trabajo" width="50">Hoja Trabajo</th>

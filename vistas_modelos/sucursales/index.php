@@ -10,9 +10,9 @@
     $conf = new Configuracion();
     $conf->conectar();
     $query=mysqli_query($conf->conectar(), "SELECT nombre_cliente FROM clientes");
+    $query1=mysqli_query($conf->conectar(), "SELECT primer_nombre From contacto_cliente")
+
 ?>
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,7 +37,7 @@
                 <th field="nombre_sucursal" width="50">Nombre Sucursal</th>
                 <th field="identificacion_cliente" width="50">Identificacion Cliente</th>
                 <th field="direccion" width="50">Direccion</th>
-                
+                <th field="contacto_cliente" width="50">Contacto_cliente</th>
                 
             </tr>
         </thead>
@@ -70,6 +70,19 @@
             </div>
             <div style="margin-bottom:10px">
                 <input name="direccion" class="easyui-textbox" required="true" label="Direccion:" labelPosition="top" style="width:100%">
+            </div>
+            <div style="margin-bottom:10px">
+            <select class="easyui-combobox" name="contacto_cliente" label="Contacto Cliente:" labelPosition="top" style="width:100%" require="true">
+                 <option value="Seleccione...">Seleccione...</option>
+                 <?php
+                     while($datos = mysqli_fetch_array($query1))
+                     {
+                 ?>
+                        <option value="<?php echo $datos['primer_nombre']?>"> <?php echo $datos['primer_nombre']?> </option>
+                 <?php
+                     }
+                 ?>
+            </select>
             </div>
         </form>
     </div>

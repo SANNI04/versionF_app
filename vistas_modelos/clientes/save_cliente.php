@@ -6,12 +6,13 @@ $tipo_identificacion = htmlspecialchars($_REQUEST['tipo_identificacion']);
 $email = htmlspecialchars($_REQUEST['email']);
 $telefono = htmlspecialchars($_REQUEST['telefono']);
 $direccion = htmlspecialchars($_REQUEST['direccion']);
+$contacto_cliente = htmlspecialchars($_REQUEST['contacto_cliente']);
 
 include '../conexion/conn.php';
 $conf= new Configuracion();
 $conf->conectar();
 
-$sql = "insert into clientes (nombre_cliente,identificacion,tipo_identificacion,email,telefono,direccion) values ('$nombre_cliente','$identificacion','$tipo_identificacion','$email','$telefono','$direccion ')";
+$sql = "insert into clientes (nombre_cliente,identificacion,tipo_identificacion,email,telefono,direccion,contacto_cliente) values ('$nombre_cliente','$identificacion','$tipo_identificacion','$email','$telefono','$direccion','$contacto_cliente')";
 $query = mysqli_query($conf->conectar(),$sql);
 echo json_encode(array(
 	'nombre_cliente' => $nombre_cliente,
@@ -19,7 +20,7 @@ echo json_encode(array(
 	'tipo_identificacion' => $tipo_identificacion,
 	'email' => $email,
 	'telefono' => $telefono,
-	'direccion' => $direccion
-
+	'direccion' => $direccion,
+	'contacto_cliente' => $contacto_cliente
 ));
 ?>
