@@ -124,3 +124,5 @@ async function getConsecutivo(){
 }
 
 getConsecutivo();
+
+

@@ -52,8 +52,11 @@
                     <div class="col-md-6">
                         <label for="tipo_orden_trabajo">Tipo Orden Trabajo:</label>
                         <select type="text" name="tipo_orden_trabajo" id="tipo_orden_trabajo" class="form-control"  autofocus>
-                           <option>Mantenimiento</option>
+                           <option>Preventivo</option>
                             <option>Correctivo</option>
+                            <option>Diagnostico</option>
+                            <option>Horometro</option>
+
                         </select>
                     </div>
                     <div class="col-md-6">
@@ -111,7 +114,31 @@
                         <input type="time" name="hora_finalizacion" id="hora_finalizacion" class="form-control">
                     </div>
                 </div>
-                <div class="row"> 
+                <div class="row">
+                <div class="col-md-6">
+                        <label for="voltaje">Voltaje:</label>
+                        <input type="text" name="voltaje" id="voltaje" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="amperaje">Amperaje:</label>
+                        <input type="text" name="amperaje" id="amperaje" class="form-control">
+                    </div>
+                </div>
+                <div class="row">
+                <div class="col-md-6">
+                        <label for="clavija">Clavija:</label>
+                        <input type="text" name="clavija" id="clavija" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="modelo">Modelo:</label>
+                        <input type="text" name="modelo" id="modelo" class="form-control">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="serie">Serie:</label>
+                        <input type="text" name="serie" id="serie" class="form-control">
+                    </div> 
                     <div class="col-md-6">
                         <input type="hidden" class="form-control" id ="codigo_orden_trabajo" name="codigo_orden_trabajo">
                         <!--atributo autofocus HTML5. La función de este atributo es poner el cursor de manera activa en un input del formulario sin necesidad de hacer click en él-->

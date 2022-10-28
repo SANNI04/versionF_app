@@ -168,6 +168,21 @@
             <div style="margin-bottom:10px">
                 <input type='time' name="hora_finalizacion" class="easyui-textbox" label="Hora Finalizacion" labelPosition="top" style="width:100%">
             </div>
+            <div style="margin-bottom:10px">
+                <input type='text' name="voltaje" class="easyui-textbox" label="Voltaje" labelPosition="top" style="width:100%">
+            </div>
+            <div style="margin-bottom:10px">
+                <input type='text' name="amperaje" class="easyui-textbox" label="Amperaje" labelPosition="top" style="width:100%">
+            </div>
+            <div style="margin-bottom:10px">
+                <input type='text' name="clavija" class="easyui-textbox" label="Clavija" labelPosition="top" style="width:100%">
+            </div>
+            <div style="margin-bottom:10px">
+                <input type='text' name="modelo" class="easyui-textbox" label="Modelo" labelPosition="top" style="width:100%">
+            </div>
+            <div style="margin-bottom:10px">
+                <input type='text' name="serie" class="easyui-textbox" label="Serie" labelPosition="top" style="width:100%">
+            </div>
         </form>
     </div>
     <div id="dlg-buttons">

@@ -33,6 +33,7 @@ function Consultar() {
     }).fail(function(response) {
         console.log(response);
     });
+
 }
 
 function ConsultarPorId(index_id) {
@@ -55,12 +56,19 @@ function ConsultarPorId(index_id) {
         document.getElementById('estado_equipo').value=response.estado_equipo;
         document.getElementById('hora_inicio').value=response.hora_inicio;
         document.getElementById('hora_finalizacion').value=response.hora_finalizacion;
+        document.getElementById('voltaje').value=response.voltaje;
+        document.getElementById('amperaje').value=response.amperaje;
+        document.getElementById('clavija').value=response.clavija;
+        document.getElementById('modelo').value=response.modelo;
+        document.getElementById('serie').value=response.serie;
         document.getElementById('index_id').value=response.index_id; 
         BloquearBotones(false);
     }).fail(function(response) {
         console.log(response);
     });
 }
+
+
 
 function Guardar() {
     $.ajax({
@@ -80,9 +88,12 @@ function Guardar() {
         console.log(response);
     });
     console.log(response);
+
+    Limpiar(); 
 }
 
 function Modificar() {
+
     $.ajax({
         url: url,
         data: retornarDatos("MODIFICAR"),
@@ -133,8 +144,13 @@ function Validar() {
     estado_equipo = document.getElementById('estado_equipo').value;
     hora_inicio = document.getElementById('hora_inicio').value;
     hora_finalizacion = document.getElementById('hora_finalizacion').value;
+    voltaje = document.getElementById('voltaje').value;
+    amperaje = document.getElementById('amperaje').value;
+    clavija = document.getElementById('clavija').value;
+    modelo = document.getElementById('modelo').value;
+    serie = document.getElementById('serie').value;
    
-if(codigo_orden_trabajo == "" || tipo_orden_trabajo =="" || cliente== "" || sucursal== "" || persona_encargada=="" || tecnico=="" || observaciones=="" || fecha_orden_trabajo=="" || equipo=="" || marca =="" || estado_equipo=="" || hora_inicio=="" || hora_finalizacion=="") {
+if(codigo_orden_trabajo == "" || tipo_orden_trabajo =="" || cliente== "" || sucursal== "" || persona_encargada=="" || tecnico=="" || observaciones=="" || fecha_orden_trabajo=="" || equipo=="" || marca =="" || estado_equipo=="" || hora_inicio=="" || hora_finalizacion=="" || voltaje=="" || amperaje=="" || clavija=="" || modelo=="" || serie=="") {
         return false;
     }
     return true;
@@ -155,6 +171,11 @@ function retornarDatos(accion) {
         "estado_equipo": document.getElementById('estado_equipo').value,
         "hora_inicio": document.getElementById('hora_inicio').value,
         "hora_finalizacion": document.getElementById('hora_finalizacion').value,
+        "voltaje": document.getElementById('voltaje').value,
+        "amperaje": document.getElementById('amperaje').value,
+        "clavija": document.getElementById('clavija').value,
+        "modelo": document.getElementById('modelo').value,
+        "serie": document.getElementById('serie').value,
         "accion": accion,
         "index_id":  document.getElementById('index_id').value
     };
@@ -174,6 +195,11 @@ function Limpiar() {
         document.getElementById('estado_equipo').value = "";
         document.getElementById('hora_inicio').value = "";
         document.getElementById('hora_finalizacion').value = "";
+        document.getElementById('voltaje').value = "";
+        document.getElementById('amperaje').value = "";
+        document.getElementById('clavija').value = "";
+        document.getElementById('modelo').value = "";
+        document.getElementById('serie').value = "";
     BloquearBotones(true);
 }
 
@@ -194,3 +220,32 @@ function MostrarAlerta(titulo, descripcion, tipoAlerta) {
         tipoAlerta
     );
 }
+
+
+/*$('.Pdf').click(function(){
+    window.location('../../../prefacturas/pdforden.php?' + '&index_id=' + $(this).get(0).data.index_id, '_blank')
+});*/
+
+/*
+function Pdf() {
+    var url = "localhost/prefacturas/pdforden.php?";
+    window.open(url + '&index_id=' + $(this).get(0).dataset.index_id, '_blank');
+
+}*/
+
+/*
+function Pdf(){
+    var url = "localhost/prefacturas/pdforden.php?";
+    $.ajax({
+        type: 'POST',
+        url: url + '&index_id='+ index_id,
+        data: json,
+        success: function(msg){
+            window.open(url + '&index_id='+ index_id, '_blank');
+            window.location = '../vista/ot.php';
+        },
+        error: function(){
+            alert ("Hay un error");
+        }
+    });
+}*/

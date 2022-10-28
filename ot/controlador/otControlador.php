@@ -25,6 +25,11 @@
              $estado_equipo = $_POST["estado_equipo"];
              $hora_inicio = $_POST["hora_inicio"];
              $hora_finalizacion = $_POST["hora_finalizacion"];
+             $voltaje = $_POST["voltaje"];
+             $amperaje = $_POST["amperaje"];
+             $clavija = $_POST["clavija"];
+             $modelo = $_POST["modelo"];
+             $serie = $_POST["serie"];
           
              //VERIFICANDO DATOS OBLIGATORIOS.
 
@@ -72,8 +77,8 @@
                 echo json_encode("Dato obligatorio");
                 return;
             }
-                
-            $respuesta = $orden_trabajo->Guardar($codigo_orden_trabajo,$tipo_orden_trabajo,$cliente,$sucursal,$persona_encargada,$tecnico,$observaciones,$fecha_orden_trabajo,$equipo,$marca,$estado_equipo,$hora_inicio,$hora_finalizacion);
+            
+            $respuesta = $orden_trabajo->Guardar($codigo_orden_trabajo,$tipo_orden_trabajo,$cliente,$sucursal,$persona_encargada,$tecnico,$observaciones,$fecha_orden_trabajo,$equipo,$marca,$estado_equipo,$hora_inicio,$hora_finalizacion,$voltaje,$amperaje,$clavija,$modelo,$serie);
             echo json_encode($respuesta);
             break;
             case "MODIFICAR":
@@ -90,6 +95,11 @@
             $estado_equipo = $_POST["estado_equipo"];
             $hora_inicio = $_POST["hora_inicio"];
             $hora_finalizacion = $_POST["hora_finalizacion"];
+            $voltaje = $_POST["voltaje"];
+            $amperaje = $_POST["amperaje"];
+            $clavija = $_POST["clavija"];
+            $modelo = $_POST["modelo"];
+            $serie = $_POST["serie"];
             $index_id = $_POST["index_id"];
 
             if($tipo_orden_trabajo == ""){
@@ -131,8 +141,8 @@
                 echo json_encode("Dato obligatorio");
                 return;
             }
-                
-            $respuesta = $orden_trabajo->Modificar($index_id,$codigo_orden_trabajo,$tipo_orden_trabajo,$cliente,$sucursal,$persona_encargada,$tecnico,$observaciones,$fecha_orden_trabajo,$equipo,$marca,$estado_equipo,$hora_inicio,$hora_finalizacion);
+            
+            $respuesta = $orden_trabajo->Modificar($index_id,$codigo_orden_trabajo,$tipo_orden_trabajo,$cliente,$sucursal,$persona_encargada,$tecnico,$observaciones,$fecha_orden_trabajo,$equipo,$marca,$estado_equipo,$hora_inicio,$hora_finalizacion,$voltaje,$amperaje,$clavija,$modelo,$serie);
             echo json_encode($respuesta);
             break;
             case "ELIMINAR":

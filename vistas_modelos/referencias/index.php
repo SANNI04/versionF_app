@@ -27,7 +27,7 @@
 </head>
 <body>
   
-    <table id="dg" title="Referencias" class="easyui-datagrid" style="width:1150px;height:500px"
+    <table id="dg" title="Referencias" class="easyui-datagrid" style="width:auto;height: 700px;"
             url="../vistas_modelos/referencias/get_users.php"
             toolbar="#toolbar" pagination="true"
             rownumbers="true" fitColumns="true" singleSelect="true">
@@ -42,7 +42,7 @@
                 <th field="marca" width="50">Marca</th>
                 <th field="descripcion" width="50">Descripcion</th>
                 <th field="precio_inicial" width="50">Precio Inicial</th>
-                <th field="ruta_foto" width="50">Ruta_foto</th>
+                <th field="ruta_foto" width="200">Ruta_foto</th>
             </tr>
         </thead>
     </table>
@@ -53,7 +53,7 @@
     </div>
     
     <div id="dlg" class="easyui-dialog" style="width:500px; height:500px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons'">
-        <form id="fm" method="post" novalidate style="margin:0;padding:20px 50px">
+        <form id="fm" method="post" action="save_user.php" novalidate style="margin:0;padding:20px 50px">
         <h3>Informacion Registro Productos-Referencias</h3><br>
             <br>
             <div style="margin-bottom:10px">
@@ -91,16 +91,21 @@
                 <input name="precio_inicial" class="easyui-numberbox" data_options="min:0,presicion:2"  required="true" label="Precio Inicial:" labelPosition="top" style="width:100%">
             </div>
             <div style="margin-bottom:10px">
-                <input name="ruta_foto" class="easyui-textbox" label="Foto:" labelPosition="top" style="width:100%">
+                <input name="ruta_foto" class="easyui-filebox" id="ruta_foto" label="Foto:" labelPosition="top" style="width:100%">
             </div>
         </form>
     </div>
     <div id="dlg-buttons">
-        <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveUser()" style="width:90px">Save</a>
+        <a href="javascript:void(0)" name="subir" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveUser()" style="width:90px">Save</a>
         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')" style="width:90px">Cancel</a>
     </div>
     <script type="text/javascript">
         var url;
+/**/ 
+    $('#ruta_foto').filebox({
+	    accept: 'image/*'
+    });
+/**/
         function newUser(){
             $('#dlg').dialog('open').dialog('center').dialog('setTitle','New User');
             $('#fm').form('clear');
