@@ -58,7 +58,8 @@
     <div id="toolbar">
         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">Nuevo</a>
         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">Editar</a>
-    </div>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-print" plain="true" onclick='Pdf(" + data.index_id + ");'>PDF</a>
+       <!-- <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-print" onclick="Pdf( data-codigo='<?/*php echo $fila['codigo'] */?>')">Pdf</a> -->
     
     <div id="dlg" class="easyui-dialog" style="width:500px; height:500px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons',maximizable:'false'">
         <form id="fm" method="post" novalidate style="margin:0;padding:20px 50px">
@@ -188,6 +189,25 @@
                 url = '../vistas_modelos/cotizaciones/update_user.php?index_id='+row.index_id;
             }
         }
+
+function Pdf(index_id){
+    var url = "../vistas_modelos/pdffactura.php?";
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: Pdf,
+        success: function(){
+            window.open(url + '&index_id='+ index_id, + '&codigocotizacion=' + codigocotizacion, '_blank');
+            //window.location = '../vista_modelos/cotizaciones';
+        },
+        error: function(){
+            alert ("Hay un error");
+        }
+    });
+}
+        
+
+
         function saveUser(){
             $('#fm').form('submit',{
                 url: url,

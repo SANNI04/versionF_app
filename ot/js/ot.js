@@ -227,25 +227,27 @@ function MostrarAlerta(titulo, descripcion, tipoAlerta) {
 });*/
 
 /*
-function Pdf() {
-    var url = "localhost/prefacturas/pdforden.php?";
-    window.open(url + '&index_id=' + $(this).get(0).dataset.index_id, '_blank');
+function Pdf(index_id) {
+    
+    var url = "pdforden.php?";
+    window.open(url + '&index_id=' + $(this).get(0).dataset, index_id, '_blank');
 
+    console.log(index_id);
 }*/
 
-/*
-function Pdf(){
-    var url = "localhost/prefacturas/pdforden.php?";
+
+function Pdf(index_id){
+    var url = "pdforden.php?";
     $.ajax({
         type: 'POST',
-        url: url + '&index_id='+ index_id,
-        data: json,
-        success: function(msg){
+        url: url,
+        data: Pdf,
+        success: function(){
             window.open(url + '&index_id='+ index_id, '_blank');
-            window.location = '../vista/ot.php';
+            //window.location = '../vista/ot.php';
         },
         error: function(){
             alert ("Hay un error");
         }
     });
-}*/
+}

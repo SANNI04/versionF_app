@@ -139,6 +139,12 @@
                         <label for="serie">Serie:</label>
                         <input type="text" name="serie" id="serie" class="form-control">
                     </div> 
+                   <!-- <div class="col-md-6">
+                        <label for="firma_cliente">Firma cliente:</label>
+                        <input type="text" name="firma_cliente" id="firma_cliente" class="form-control">
+                    </div> -->
+                </div>    
+                <div class="row">    
                     <div class="col-md-6">
                         <input type="hidden" class="form-control" id ="codigo_orden_trabajo" name="codigo_orden_trabajo">
                         <!--atributo autofocus HTML5. La función de este atributo es poner el cursor de manera activa en un input del formulario sin necesidad de hacer click en él-->
