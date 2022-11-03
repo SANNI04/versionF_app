@@ -106,14 +106,13 @@ img {
     min-height: calc(100vh - 60px);
 }
 
-
 /* sidebar */
 
 .sidebar {
     position: absolute;
     top: 0;
     left: 0;
-    height: 150%;
+    height: 160%;
     width: 300px;
     background-color: rgb(0, 0, 0);
     padding: 30px;
@@ -219,7 +218,7 @@ a {
 .main--content {
     position: absolute;
     right: 0;
-    height: 150%;
+    height: 160%;
     width: calc(100% - 300px);
     padding: 0 40px;
     overflow-y: scroll;

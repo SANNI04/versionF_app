@@ -10,12 +10,13 @@ $cantidad = htmlspecialchars($_REQUEST['cantidad']);
 $codigo_cotizacion = htmlspecialchars($_REQUEST['codigo_cotizacion']);
 $codigo_ordenes_compra = htmlspecialchars($_REQUEST['codigo_ordenes_compra']);
 $codigo_factura = htmlspecialchars($_REQUEST['codigo_factura']);
+$fecha_caducado = htmlspecialchars($_REQUEST['fecha_caducado']);
 
 include '../conexion/conn.php';
 $conf = new Configuracion();
 $conf->conectar();
 
-$sql = "insert into remisiones (numero_remision,fecha,cliente,sucursal,tecnico,nombre_referencia,cantidad,codigo_cotizacion,codigo_ordenes_compra,codigo_factura) values ('$numero_remision','$fecha','$cliente','$sucursal','$tecnico','$nombre_referencia','$cantidad','$codigo_cotizacion','$codigo_ordenes_compra','$codigo_factura')";
+$sql = "insert into remisiones (numero_remision,fecha,cliente,sucursal,tecnico,nombre_referencia,cantidad,codigo_cotizacion,codigo_ordenes_compra,codigo_factura,fecha_caducado) values ('$numero_remision','$fecha','$cliente','$sucursal','$tecnico','$nombre_referencia','$cantidad','$codigo_cotizacion','$codigo_ordenes_compra','$codigo_factura','$fecha_caducado')";
 $query = mysqli_query($conf->conectar(),$sql);
 echo json_encode(array(
 
@@ -28,7 +29,9 @@ echo json_encode(array(
 	'cantidad' => $cantidad,
 	'codigo_cotizacion' => $codigo_cotizacion,
 	'codigo_ordenes_compra' => $codigo_ordenes_compra,
-	'codigo_factura' => $codigo_factura
+	'codigo_factura' => $codigo_factura,
+	'fecha_caducado' => $fecha_caducado
+
 ));
 ?>
 

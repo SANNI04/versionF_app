@@ -15,6 +15,9 @@
     $query3=mysqli_query($conf->conectar(), "SELECT nombre_modelo from equipos");
     $query4=mysqli_query($conf->conectar(), "SELECT cod_serial from equipos");
     $query5=mysqli_query($conf->conectar(), "SELECT codigo_orden from ordenes_compra");
+    $query6=mysqli_query($conf->conectar(), "SELECT index_id,nombre_cliente from clientes");
+    //$consulta=mysqli_query($conf->conectar(), "SELECT index_id as codigo from cotizaciones");
+    //$fila = mysqli_fetch_all($consulta, MYSQLI_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -40,7 +43,6 @@
 		
                 <th field="cod_cotizacion" width="50">Codigo Cotización</th>
                 <th field="fecha_cotizacion" width="50">Fecha Cotización</th>
-                <th field="hoja_trabajo" width="50">Hoja Trabajo</th>
                 <th field="nombre_creador" width="50">Nombre Creador</th>
                 <th field="cliente" width="50">Cliente</th>
                 <th field="sucursal" width="50">Sucursal</th>
@@ -48,19 +50,19 @@
                 <th field="modelo" width="50">Modelo</th>
                 <th field="serie" width="50">Serie</th>
                 <th field="repuestos" width="50">Repuestos</th>
-                <th field="valor" width="50">Valoe</th>
-                <th field="ejecucion" width="50">Ejecución</th>
-                <th field="cod_orden_compra" width="50">Cod Orden Compra</th>
-                <th field="cod_factura" width="50">Cod Factura</th>
+                
             </tr>
         </thead>
     </table>
     <div id="toolbar">
         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">Nuevo</a>
         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">Editar</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-print" plain="true" onclick='Pdf(" + data.index_id + ");'>PDF</a>
-       <!-- <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-print" onclick="Pdf( data-codigo='<?/*php echo $fila['codigo'] */?>')">Pdf</a> -->
-    
+      <!--  <a href="javascript:void(0)" class="easyui-linkbutton botonimprimir" iconCls="icon-print" plain="true" role="button" data-codigo="<?/*php echo $fila['codigo'] */?>">PDF</a>-->
+     <!--  <a href="javascript:void(0)" class="easyui-linkbutton botonimprimir" iconCls="icon-print" plain="true" onclick="Pdf(data-codigo='<?/*php echo $fila['codigo'] */?>'); ">PDF</a>-->
+     
+       <!-- <button class='btn btn-info' onclick='Pdf("  + data.codigo  + ");'><span class='fa fa-file-pdf'></span> PDF</button>-->
+       <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="Pdf()">PDF</a>
+
     <div id="dlg" class="easyui-dialog" style="width:500px; height:500px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons',maximizable:'false'">
         <form id="fm" method="post" novalidate style="margin:0;padding:20px 50px">
         <h3>Informacion Registro Cotizaciones</h3><br>
@@ -168,6 +170,25 @@
             <div style="margin-bottom:10px">
                 <input name="cod_factura" class="easyui-textbox" required="true" label="Cod Factura:" labelPosition="top" style="width:100%">
             </div>
+            <div style="margin-bottom:10px">
+                <select class="easyui-combobox" name="codigocliente" label="Codigo Cliente" labelPosition="top" style="width:100%" require="true">
+                    <option value="Seleccione...">Seleccione...</option>
+                     <?php
+                         while($datos = mysqli_fetch_array($query6))
+                         {
+                    ?>
+                        <option value="<?php echo $datos['index_id']?>"> <?php echo $datos['nombre_cliente']?> </option>
+                    <?php
+                        }
+                    ?>
+                </select>
+            </div>
+            <div style="margin-bottom:10px">
+                <input name="vigencia" type="date" class="easyui-textbox" required="true" label="Vigencia:" labelPosition="top" style="width:100%">
+            </div>
+            <div style="margin-bottom:10px">
+                <input name="ciudad" class="easyui-textbox" required="true" label="Ciudad:" labelPosition="top" style="width:100%">
+            </div>
         </form>
     </div>
     <div id="dlg-buttons">
@@ -190,14 +211,23 @@
             }
         }
 
-function Pdf(index_id){
-    var url = "../vistas_modelos/pdffactura.php?";
+        function Pdf(){
+
+            var row = $('#dg').datagrid('getSelected');
+            if (row){
+                url = '../vistas_modelos/cotizaciones/pdffactura.php?';
+                window.open(url + '&cod_cotizacion='+ row.cod_cotizacion, '_blank');
+            }
+        }
+/*
+function Pdf(codigocotizacion){
+    var url = "../vistas_modelos/cotizaciones/pdffactura.php?";
     $.ajax({
         type: 'POST',
         url: url,
         data: Pdf,
         success: function(){
-            window.open(url + '&index_id='+ index_id, + '&codigocotizacion=' + codigocotizacion, '_blank');
+            window.open(url + '&codigocotizacion='+ codigocotizacion, '_blank');
             //window.location = '../vista_modelos/cotizaciones';
         },
         error: function(){
@@ -205,7 +235,12 @@ function Pdf(index_id){
         }
     });
 }
-        
+      */
+
+/*$('.botonimprimir').click(function() {
+        window.open('../vistas_modelos/cotizaciones/pdffactura.php?' + '&codigocotizacion=' + $(this).get(0).dataset.codigo '_blank');
+       
+      });*/
 
 
         function saveUser(){

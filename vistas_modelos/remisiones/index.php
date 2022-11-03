@@ -47,6 +47,8 @@
                 <th field="codigo_cotizacion" width="50">Codigo_cotizacion</th>
                 <th field="codigo_ordenes_compra" width="50">Cod Orden Compra</th>
                 <th field="codigo_factura" width="50">Cod Factura</th>
+                <th field="fecha_caducado" width="50">Fecha Cad</th>
+                <th field="alerta" data-options="styler:cellStyler, sortable:true" width="50">Alerta</th>
             </tr>
         </thead>
     </table>
@@ -149,6 +151,9 @@
             <div style="margin-bottom:10px">
                 <input name="codigo_factura" class="easyui-textbox" required="true" label="Cod Factura:" labelPosition="top" style="width:100%">
             </div>
+            <div style="margin-bottom:10px">
+                <input name="fecha_caducado" type='date' class="easyui-textbox" required="true" label="Fecha Caducado:" labelPosition="top" style="width:100%">
+            </div>
         </form>
     </div>
     <div id="dlg-buttons">
@@ -156,6 +161,20 @@
         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')" style="width:90px">Cancel</a>
     </div>
     <script type="text/javascript">
+        function cellStyler(value,row,index){
+            if (value == 'Remision vigente'){
+                return 'background-color:#70FF00;color:black;';
+            }
+            if (value == 'Remision poca vigencia'){
+                return 'background-color:#FFee00;color:Black;';
+            }
+            if(value == 'Remision vencida'){
+                return 'background-color:#FF0000;color:Black;';
+            }
+            if(value == 'Remision sin vigencia'){
+                return 'background-color:#70FF00;color:Black;';
+            }
+        }
         var url;
         function newUser(){
             $('#dlg').dialog('open').dialog('center').dialog('setTitle','New User');

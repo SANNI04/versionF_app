@@ -27,16 +27,16 @@
     <table id="dg" title="Alquileres" class="easyui-datagrid" style="width:1150px;height:500px"
             url="../vistas_modelos/alquileres/get_alquileres.php"
             toolbar="#toolbar" pagination="true"
-            rownumbers="true" fitColumns="true" singleSelect="true">
+            rownumbers="true" fitColumns="true" singleSelect="true" data-options="remoteSort:false,multiSort:true">
         <thead>
             <tr>
-		        <th field="index_id" width="50">Id</th>
-                <th field="equipo" width="50">Equipo</th>
-                <th field="cliente" width="50">Cliente</th>
-                <th field="fecha_alquiler" width="50">Fecha Alquiler:</th>
-                <th field="fecha_devolucion" width="50">Fecha Devolucion</th>
-                <th field="fecha_alerta" width="50">Fecha Alerta</th>
-                <th field="alerta" width="50">Alerta</th>
+		        <th field="index_id" width="50" data-options="sortable:true">Id</th>
+                <th field="equipo" width="50" data-options="sortable:true">Equipo</th>
+                <th field="cliente" width="50" data-options="sortable:true">Cliente</th>
+                <th field="fecha_alquiler" width="50" data-options="sortable:true">Fecha Alquiler:</th>
+                <th field="fecha_devolucion" width="50" data-options="sortable:true">Fecha Devolucion</th>
+                <th field="fecha_alerta" width="50" data-options="sortable:true">Fecha Alerta</th>
+                <th field="alerta" data-options="styler:cellStyler, sortable:true" width="50">Alerta</th>
             </tr>
         </thead>
     </table>
@@ -91,6 +91,20 @@
         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')" style="width:90px">Cancel</a>
     </div>
     <script type="text/javascript">
+        function cellStyler(value,row,index){
+            if (value == 'Alquilado vigente'){
+                return 'background-color:#70FF00;color:black;';
+            }
+            if (value == 'Alquilado poca vigencia'){
+                return 'background-color:#FFee00;color:Black;';
+            }
+            if(value == 'Vencido'){
+                return 'background-color:#FF0000;color:Black;';
+            }
+            if(value == 'Alquilado sin Vigencia'){
+                return 'background-color:#70FF00;color:Black;';
+            }
+        }
         var url;
         function newUser(){
             $('#dlg').dialog('open').dialog('center').dialog('setTitle','New User');

@@ -1,9 +1,9 @@
 <?php
- session_start();
- if(!isset($_SESSION["usuario"]) || $_SESSION["usuario"] !== true){
-     header("location: index.php");
-     exit;
- }
+  session_start();
+  if(!isset($_SESSION["usuario"]) || $_SESSION["usuario"] !== true){
+      header("location: index.php");
+      exit;
+  }
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +17,7 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <script src="../assets/js/jquery-3.4.1.min.js"></script>
     
-    <title>OT</title>
+    <title>Equipos</title>
 </head>
 
 <body>
@@ -25,9 +25,10 @@
         <div class="logo">
             <i class="ri-menu-line icon icon-0 menu"></i>
         </div>
-        <div class="notification--profile">   
+        <div class="notification--profile">
             <div class="picon profile">
-            <img src="../login/images/logo.png" alt="">
+                 <img src="../login/images/logo.png" alt="">
+            |</div>
         </div>
         </div>
     </section>
@@ -71,7 +72,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="equipos.php">
+                    <a href="equipos.php" id="active--link">
                         <span class="icon icon-4"><i class="ri-truck-line"></i></span>
                         <span class="sidebar--item">Equipos</span>
                     </a>
@@ -114,9 +115,10 @@
                     </a>
                 </li>
                 <li>
-                    <a href="detallescotizacion.php">
+                <li>
+                    <a href="#">
                         <span class="icon icon-4"><i class="ri-article-line"></i></span>
-                        <span class="sidebar--item">Detalles Cotizacion</span>
+                        <span class="sidebar--item">Detalles Cotizaciones</span>
                     </a>
                 </li>
                 <li>
@@ -132,7 +134,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="../ot/vista/ot.php" target="_blank" id="active--link">
+                    <a href="ot.php">
                         <span class="icon icon-5"><i class="ri-article-line"></i></span>
                         <span class="sidebar--item">OT</span>
                     </a>
@@ -148,15 +150,21 @@
             </ul>
         </div>
         <div class="main--content">
-            <br><br>
+            
+        <br><br>
             <div class="recent--patients">
                 <div class="title">
-                    <h2 class="section--title">OT</h2>
+                    <h2 class="section--title">EQUIPOS</h2>
                 </div>                   
-                <br><br><br>   
+                <br><br><br>                        
                     
+                    <div id="contenedor--crud"></div>
 
-                   <!-- <a href="../ot/vista/ot.php" target="_blank">ingresa aqui</a>-->
+                    <script>
+                        $(document).ready(()=>{
+                        $('#contenedor--crud').load('../vistas_modelos/detallesCotizaciones/index.php');
+                        })
+                    </script>
             </div>
         </div>
     </section>

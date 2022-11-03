@@ -15,6 +15,7 @@ if(!isset($_SESSION["usuario"]) || $_SESSION["usuario"] !== true){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/styles.css">
+    <!--<link rel="stylesheet" href="ot/assets/css/bootstrap.min.css">-->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <script src="assets/js/jquery-3.4.1.min.js"></script>
     
@@ -121,6 +122,12 @@ if(!isset($_SESSION["usuario"]) || $_SESSION["usuario"] !== true){
                     </a>
                 </li>
                 <li>
+                    <a href="vistas/detallescotizacion.php">
+                        <span class="icon icon-4"><i class="ri-article-line"></i></span>
+                        <span class="sidebar--item">Detalles Cotizacion</span>
+                    </a>
+                </li>
+                <li>
                     <a href="vistas/remisiones.php">
                         <span class="icon icon-3"><i class="ri-ball-pen-fill"></i></span>
                         <span class="sidebar--item">Remisiones</span>
@@ -153,8 +160,25 @@ if(!isset($_SESSION["usuario"]) || $_SESSION["usuario"] !== true){
             <div class="recent--patients">
                 <div class="title">
                     <h2 class="section--title"> <?php echo "Bienvenido ". $_SESSION['nombre'] ?> </h2>
-                </div>                        
-                    
+                </div> 
+                
+                <!--<button type="button" class="btn btn-warning btn-lg btn-block"><a href="http://localhost/versionF_app/ot/vista/ot.php"  target="_blank" style="color: black">Acceso directo OT</a></button>-->
+                <a class="btn" href="http://localhost/versionF_app/ot/vista/ot.php"  target="_blank">Acceso directo OT</a>
+
+                <style type="text/css">
+                .btn{
+                   
+                    text-decoration: none;
+                    padding: 10px;
+                    font-weight: 500;
+                    font-size: 20px;
+                    color: black;
+                    background-color: yellow;
+                    border-radius: 6px;
+                    border: 1px solid black;
+                }
+</style>
+
                     <div id="contenedor--crud"></div>
             </div>
         </div>
@@ -162,5 +186,6 @@ if(!isset($_SESSION["usuario"]) || $_SESSION["usuario"] !== true){
     <script src="assets/js/main.js"></script>
 
 </body>
+<!--<script src="ot/assets/js/bootstrap.min.js"></script>-->
 
 </html>

@@ -26,29 +26,30 @@ function cabecera($fpdf, $conexion)
     $fpdf->SetTextColor(255, 255, 255);
     $fpdf->Image('imagenes/logo.png', 10, 2);
     $fpdf->Image('imagenes/logo2.png', 130, 2);
-    $datos = mysqli_query($conexion, "select cod_cotizacion,nombre_cliente,identificacion,direccion,telefono,email,contacto_cliente,
-                                             date_format(fecha_cotizacion,'%d/%m/%Y') as fecha
+    $datos = mysqli_query($conexion, "select cot.index_id,nombre_cliente,identificacion,direccion,telefono,email,contacto_cliente,
+                                             date_format(fecha_cotizacion,'%d/%m/%Y') as fecha,vigencia,ciudad
                                          from cotizaciones as cot
-                                         join clientes as cli on cli.index_id=cot.cod_cotizacion
-                                         where cot.cod_cotizacion=$_GET[index_id]") or die(mysqli_error($conexion));
+                                         join clientes as cli on cli.index_id=cot.codigocliente
+                                         join detallefactura as deta on cot.cod_cotizacion=deta.codigocotizacion
+                                         where deta.codigocotizacion=$_GET[cod_cotizacion]") or die(mysqli_error($conexion));
     $resultado = mysqli_fetch_array($datos);
     $fpdf->SetFont('Arial', '', 12);
     $fpdf->SetTextColor(10, 10, 10);
     $fpdf->SetY(35);
     $fpdf->Cell(20,10,"Señores(as) : ".$resultado['nombre_cliente'],0,0,'L',0);
-    $fpdf->Cell(120,10,"Nit : ".$resultado['identificacion'],0,0,'R',0);
+    $fpdf->Cell(160,10,"Nit : ".$resultado['identificacion'],0,0,'R',0);
     $fpdf->SetY(35);
     $fpdf->Cell(20,20,"Direccion : ".$resultado['direccion'],0,0,'L',0);
-    $fpdf->Cell(120,20,"Cotizacion # : ".$resultado['cod_cotizacion'],0,0,'R',0);
+    $fpdf->Cell(160,20,"Cotizacion # : ".$resultado['index_id'],0,0,'R',0);
     $fpdf->SetY(35);
     $fpdf->Cell(20,30,"Telefono : ".$resultado['telefono'],0,0,'L',0);
-    $fpdf->Cell(120,30,"Fecha  : ".$resultado['fecha'],0,0,'R',0);
+    $fpdf->Cell(160,30,"Fecha  : ".$resultado['fecha'],0,0,'R',0);
     $fpdf->SetY(35);
-    $fpdf->Cell(20,40,"Ciudad : ".$resultado['nombre_cliente'],0,0,'L',0);
-    $fpdf->Cell(120,40,"Vigencia  : ".$resultado['nombre_cliente'],0,0,'R',0);
+    $fpdf->Cell(20,40,"Ciudad : ".$resultado['ciudad'],0,0,'L',0); 
+    $fpdf->Cell(160,40,"Vigencia  : ".$resultado['vigencia'],0,0,'R',0);
     $fpdf->SetY(35);
     $fpdf->Cell(20,50,"Contacto Imaq : ".$resultado['contacto_cliente'],0,0,'L',0);
-    $fpdf->Cell(120,50,"Email: ".$resultado['email'],0,0,'R',0);
+    $fpdf->Cell(160,50,"Email: ".$resultado['email'],0,0,'R',0);
    
 }
 
@@ -105,7 +106,7 @@ function piedepagina($fpdf)
 
 function imprimirdetalle($fpdf, $conexion)
 {
-    $datos = mysqli_query($conexion, "select pro.index_id as codigo,
+    $datos = mysqli_query($conexion, "select pro.index_id as codigo,cot.cod_cotizacion,
                                              nombre_referencia,
                                              round(deta.precio,2) as precio,
                                              cantidad,
@@ -116,7 +117,8 @@ function imprimirdetalle($fpdf, $conexion)
                                              deta.index_id as coddetalle
                                           from detallefactura as deta
                                           join referencias as pro on pro.index_id=deta.codigoproducto
-                                          where codigocotizacion=$_GET[codigocotizacion]") or die(mysqli_error($conexion));
+                                          join cotizaciones as cot on deta.codigocotizacion = cot.cod_cotizacion
+                                          where codigocotizacion=$_GET[cod_cotizacion]") or die(mysqli_error($conexion));
   
     $resultado = mysqli_fetch_all($datos, MYSQLI_ASSOC);
     $fpdf->SetTextColor(0, 0, 0);

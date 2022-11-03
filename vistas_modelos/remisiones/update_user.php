@@ -11,12 +11,13 @@ $cantidad = htmlspecialchars($_REQUEST['cantidad']);
 $codigo_cotizacion = htmlspecialchars($_REQUEST['codigo_cotizacion']);
 $codigo_ordenes_compra = htmlspecialchars($_REQUEST['codigo_ordenes_compra']);
 $codigo_factura = htmlspecialchars($_REQUEST['codigo_factura']);
+$fecha_caducado = htmlspecialchars($_REQUEST['fecha_caducado']);
 
 include '../conexion/conn.php';
 $conf = new Configuracion();
 $conf->conectar();
 
-$sql = "UPDATE remisiones set numero_remision='$numero_remision',fecha='$fecha',cliente='$cliente',sucursal='$sucursal',tecnico='$tecnico',nombre_referencia='$nombre_referencia',cantidad='$cantidad',codigo_cotizacion='$codigo_cotizacion',codigo_ordenes_compra='$codigo_ordenes_compra',codigo_factura='$codigo_factura' where index_id=$index_id";
+$sql = "UPDATE remisiones set numero_remision='$numero_remision',fecha='$fecha',cliente='$cliente',sucursal='$sucursal',tecnico='$tecnico',nombre_referencia='$nombre_referencia',cantidad='$cantidad',codigo_cotizacion='$codigo_cotizacion',codigo_ordenes_compra='$codigo_ordenes_compra',codigo_factura='$codigo_factura',fecha_caducado='$fecha_caducado' where index_id=$index_id";
 
 $query = mysqli_query($conf->conectar(),$sql);
 echo json_encode(array(
@@ -30,6 +31,7 @@ echo json_encode(array(
 	'cantidad' => $cantidad,
 	'codigo_cotizacion' => $codigo_cotizacion,
 	'codigo_ordenes_compra' => $codigo_ordenes_compra,
-	'codigo_factura' => $codigo_factura
+	'codigo_factura' => $codigo_factura,
+	'fecha_caducado' => $fecha_caducado
 ));
 ?>

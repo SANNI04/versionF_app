@@ -115,6 +115,12 @@
                     </a>
                 </li>
                 <li>
+                    <a href="detallescotizacion.php">
+                        <span class="icon icon-4"><i class="ri-article-line"></i></span>
+                        <span class="sidebar--item">Detalles Cotizacion</span>
+                    </a>
+                </li>
+                <li>
                     <a href="remisiones.php">
                         <span class="icon icon-3"><i class="ri-ball-pen-fill"></i></span>
                         <span class="sidebar--item">Remisiones</span>

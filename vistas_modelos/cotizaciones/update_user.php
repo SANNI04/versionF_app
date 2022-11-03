@@ -15,11 +15,14 @@ $valor = htmlspecialchars($_REQUEST['valor']);
 $ejecucion = htmlspecialchars($_REQUEST['ejecucion']);
 $cod_orden_compra = htmlspecialchars($_REQUEST['cod_orden_compra']);
 $cod_factura = htmlspecialchars($_REQUEST['cod_factura']);
+$codigocliente = htmlspecialchars($_REQUEST['codigocliente']);
+$vigencia = htmlspecialchars($_REQUEST['vigencia']);
+$ciudad = htmlspecialchars($_REQUEST['ciudad']);
 
 include '../conexion/conn.php';
 $conf = new Configuracion();
 $conf->conectar();
-$sql = "update cotizaciones set cod_cotizacion='$cod_cotizacion',fecha_cotizacion='$fecha_cotizacion',hoja_trabajo='$hoja_trabajo',nombre_creador='$nombre_creador',cliente='$cliente',sucursal='$sucursal',marca='$marca',modelo='$modelo',serie='$serie',repuestos='$repuestos',valor='$valor',ejecucion='$ejecucion',cod_orden_compra='$cod_orden_compra',cod_factura='$cod_factura' where index_id=$index_id";
+$sql = "update cotizaciones set cod_cotizacion='$cod_cotizacion',fecha_cotizacion='$fecha_cotizacion',hoja_trabajo='$hoja_trabajo',nombre_creador='$nombre_creador',cliente='$cliente',sucursal='$sucursal',marca='$marca',modelo='$modelo',serie='$serie',repuestos='$repuestos',valor='$valor',ejecucion='$ejecucion',cod_orden_compra='$cod_orden_compra',cod_factura='$cod_factura',codigocliente='$codigocliente',vigencia='$vigencia',ciudad='$ciudad' where index_id=$index_id";
 $query = mysqli_query($conf->conectar(),$sql);
 echo json_encode(array(
 	'index_id' => $index_id,
@@ -36,7 +39,9 @@ echo json_encode(array(
 	'valor' => $valor,
 	'ejecucion' => $ejecucion,
 	'cod_orden_compra' => $cod_orden_compra,
-	'cod_factura' => $cod_factura
-
+	'cod_factura' => $cod_factura,
+	'codigocliente' => $codigocliente,
+	'vigencia' => $vigencia,
+	'ciudad' => $ciudad
 ));
 ?>
