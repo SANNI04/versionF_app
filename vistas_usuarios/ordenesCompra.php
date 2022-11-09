@@ -23,7 +23,7 @@
 <body>
     <section class="header">
         <div class="logo">
-            <i class="ri-menu-line icon icon-0 menu"></i>
+            <a class="ri-menu-line icon icon-0 menu" href="../main3.php" style="color:yellow"> Menu Principal</a>
            <!--- <h2>Med<span>Ex</span></h2> -->
         </div>
             <div class="notification--profile">

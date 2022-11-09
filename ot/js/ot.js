@@ -19,13 +19,18 @@ function Consultar() {
             html += "<td>" + data.nombre_cliente + "</td>";
             html += "<td>" + data.sucursal + "</td>";
             html += "<td>" + data.tecnico + "</td>";
+            html += "<td>" + data.fecha_ot_cierre + "</td>";
+            html += "<td>" + data.categoria + "</td>";
             html += "<td>";
             html += "<button class='btn btn-warning' onclick='ConsultarPorId(" + data.index_id + ");'><span class='fa fa-edit'></span>Modificar</button>"
             html += "<button class='btn btn-danger' onclick='Eliminar(" + data.index_id + ");'><span class='fa fa-trash'></span>Eliminar</button>"
             html += "<button class='btn btn-info' onclick='Pdf("  + data.index_id  + ");'><span class='fa fa-file-pdf'></span> PDF</button>"
             html += "</td>";
-            html += "</tr>";
+            html += "</tr>";   
+
+            
     });
+
         document.getElementById("datos").innerHTML = html; //trae la data y le concatena el html que se acabo de armar. 
         
         $('#tablaOrdenTrabajo').DataTable();
@@ -61,6 +66,12 @@ function ConsultarPorId(index_id) {
         document.getElementById('clavija').value=response.clavija;
         document.getElementById('modelo').value=response.modelo;
         document.getElementById('serie').value=response.serie;
+        document.getElementById('fecha_ot_cierre').value=response.fecha_ot_cierre;
+        //document.getElementById('alerta').value=response.alerta;
+        document.getElementById('categoria').value=response.categoria;
+        document.getElementById('codigo_cotizacion').value=response.codigo_cotizacion;
+        document.getElementById('codigo_factura').value=response.codigo_factura;
+        document.getElementById('alerta').value=response.alerta;
         document.getElementById('index_id').value=response.index_id; 
         BloquearBotones(false);
     }).fail(function(response) {
@@ -149,8 +160,14 @@ function Validar() {
     clavija = document.getElementById('clavija').value;
     modelo = document.getElementById('modelo').value;
     serie = document.getElementById('serie').value;
+    fecha_ot_cierre = document.getElementById('fecha_ot_cierre').value;
+    categoria = document.getElementById('categoria').value;
+    codigo_cotizacion = document.getElementById('codigo_cotizacion').value;
+    codigo_factura = document.getElementById('codigo_factura').value;
+    
+
    
-if(codigo_orden_trabajo == "" || tipo_orden_trabajo =="" || cliente== "" || sucursal== "" || persona_encargada=="" || tecnico=="" || observaciones=="" || fecha_orden_trabajo=="" || equipo=="" || marca =="" || estado_equipo=="" || hora_inicio=="" || hora_finalizacion=="" || voltaje=="" || amperaje=="" || clavija=="" || modelo=="" || serie=="") {
+if(codigo_orden_trabajo == "" || tipo_orden_trabajo =="" || cliente== "" || sucursal== "" || persona_encargada=="" || tecnico=="" || observaciones=="" || fecha_orden_trabajo=="" || equipo=="" || marca =="" || estado_equipo=="" || hora_inicio=="" || hora_finalizacion=="" || voltaje=="" || amperaje=="" || clavija=="" || modelo=="" || serie=="" || fecha_ot_cierre=="" || categoria=="" || codigo_cotizacion=="" || codigo_factura=="") {
         return false;
     }
     return true;
@@ -176,6 +193,10 @@ function retornarDatos(accion) {
         "clavija": document.getElementById('clavija').value,
         "modelo": document.getElementById('modelo').value,
         "serie": document.getElementById('serie').value,
+        "fecha_ot_cierre": document.getElementById('fecha_ot_cierre').value,
+        "categoria": document.getElementById('categoria').value,
+        "codigo_cotizacion": document.getElementById('codigo_cotizacion').value,
+        "codigo_factura": document.getElementById('codigo_factura').value,
         "accion": accion,
         "index_id":  document.getElementById('index_id').value
     };
@@ -200,6 +221,10 @@ function Limpiar() {
         document.getElementById('clavija').value = "";
         document.getElementById('modelo').value = "";
         document.getElementById('serie').value = "";
+        document.getElementById('fecha_ot_cierre').value = "";
+        document.getElementById('categoria').value = "";
+        document.getElementById('codigo_cotizacion').value = "";
+        document.getElementById('codigo_factura').value = "";
     BloquearBotones(true);
 }
 

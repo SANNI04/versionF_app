@@ -19,7 +19,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Application</title>
+<title>Detalle Cotizaciones</title>
 	<link rel="stylesheet" type="text/css" href="../vistas_modelos/themes/black/easyui.css">
 	<link rel="stylesheet" type="text/css" href="../vistas_modelos/themes/icon.css">
 	<link rel="stylesheet" type="text/css" href="../vistas_modelos/themes/color.css">
@@ -28,7 +28,7 @@
 </head>
 <body>
 
-    <table id="dg" title="Equipos" class="easyui-datagrid" style="width:1150px;height:500px"
+    <table id="dg" title="Detalle Cotizaciones" class="easyui-datagrid" style="width:1150px;height:500px"
             url="../vistas_modelos/detallesCotizaciones/get_users.php"
             toolbar="#toolbar" pagination="true"
             rownumbers="true" fitColumns="true" singleSelect="true">
@@ -130,7 +130,7 @@
         function destroyUser(){
             var row = $('#dg').datagrid('getSelected');
             if (row){
-                $.messager.confirm('Confirm','Are you sure you want to destroy this user?',function(r){
+                $.messager.confirm('Confirm','Are you sure you want to destroy?',function(r){
                     if (r){
                         $.post('../vistas_modelos/detallesCotizaciones/destroy_user.php',{index_id:row.index_id},function(result){
                             if (result.success){

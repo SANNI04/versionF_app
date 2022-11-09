@@ -17,13 +17,13 @@
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <script src="../assets/js/jquery-3.4.1.min.js"></script>
     
-    <title>Equipos</title>
+    <title>Detalle Cotizacion</title>
 </head>
 
 <body>
     <section class="header">
         <div class="logo">
-            <i class="ri-menu-line icon icon-0 menu"></i>
+        <a class="ri-menu-line icon icon-0 menu" href="../main.php" style="color:yellow"> Menu Principal</a>
         </div>
         <div class="notification--profile">
             <div class="picon profile">
@@ -72,7 +72,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="equipos.php" id="active--link">
+                    <a href="equipos.php">
                         <span class="icon icon-4"><i class="ri-truck-line"></i></span>
                         <span class="sidebar--item">Equipos</span>
                     </a>
@@ -116,7 +116,7 @@
                 </li>
                 <li>
                 <li>
-                    <a href="#">
+                    <a href="#" id="active--link">
                         <span class="icon icon-4"><i class="ri-article-line"></i></span>
                         <span class="sidebar--item">Detalles Cotizaciones</span>
                     </a>
@@ -134,7 +134,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="ot.php">
+                    <a href="../ot/vista/ot.php" target="_blank">
                         <span class="icon icon-5"><i class="ri-article-line"></i></span>
                         <span class="sidebar--item">OT</span>
                     </a>
@@ -154,7 +154,7 @@
         <br><br>
             <div class="recent--patients">
                 <div class="title">
-                    <h2 class="section--title">EQUIPOS</h2>
+                    <h2 class="section--title">Detalle Cotizacion</h2>
                 </div>                   
                 <br><br><br>                        
                     

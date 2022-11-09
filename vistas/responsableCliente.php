@@ -23,7 +23,7 @@
 <body>
     <section class="header">
         <div class="logo">
-            <i class="ri-menu-line icon icon-0 menu"></i>
+        <a class="ri-menu-line icon icon-0 menu" href="../main.php" style="color:yellow"> Menu Principal</a>
         </div>
             <div class="notification--profile">
                 <div class="picon profile">
@@ -132,7 +132,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="ot.php">
+                    <a href="../ot/vista/ot.php" target="_blank">
                         <span class="icon icon-5"><i class="ri-article-line"></i></span>
                         <span class="sidebar--item">OT</span>
                     </a>

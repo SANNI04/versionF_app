@@ -15,7 +15,7 @@ if(!isset($_SESSION["usuario"]) || $_SESSION["usuario"] !== true){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/styles.css">
-    <!--<link rel="stylesheet" href="ot/assets/css/bootstrap.min.css">-->
+    <!--<link rel="stylesheet" href="login/bootstrap-4.3.1/css/bootstrap.min.css">-->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <script src="assets/js/jquery-3.4.1.min.js"></script>
     
@@ -140,7 +140,7 @@ if(!isset($_SESSION["usuario"]) || $_SESSION["usuario"] !== true){
                     </a>
                 </li>
                 <li>
-                    <a href="vistas/ot.php">
+                    <a href="http://localhost/versionF_app/ot/vista/ot.php"  target="_blank">
                         <span class="icon icon-5"><i class="ri-article-line"></i></span>
                         <span class="sidebar--item">OT</span>
                     </a>
@@ -161,23 +161,141 @@ if(!isset($_SESSION["usuario"]) || $_SESSION["usuario"] !== true){
                 <div class="title">
                     <h2 class="section--title"> <?php echo "Bienvenido ". $_SESSION['nombre'] ?> </h2>
                 </div> 
-                
+                <br>
                 <!--<button type="button" class="btn btn-warning btn-lg btn-block"><a href="http://localhost/versionF_app/ot/vista/ot.php"  target="_blank" style="color: black">Acceso directo OT</a></button>-->
                 <a class="btn" href="http://localhost/versionF_app/ot/vista/ot.php"  target="_blank">Acceso directo OT</a>
 
                 <style type="text/css">
                 .btn{
-                   
-                    text-decoration: none;
                     padding: 10px;
-                    font-weight: 500;
                     font-size: 20px;
                     color: black;
-                    background-color: yellow;
+                    background-color: #FFD733;
                     border-radius: 6px;
                     border: 1px solid black;
                 }
 </style>
+
+    <div class="caja" style="width:1110px; height:220px; overflow-y: auto">;
+        <h2>Remisiones Vencidas</h2>
+        <br>
+
+        <?php
+        
+            include 'vistas_modelos/conexion/conn.php';
+            $conf= new Configuracion();
+            $conf->conectar();
+            
+            $query="SELECT * from remisiones where alerta='Remision vencida'";
+
+            $datos=mysqli_query($conf->conectar(),$query);
+
+            while($fila=mysqli_fetch_array($datos)){
+                echo"<div>";
+                echo"<p>";
+                echo "<b>Numero Remision: </b>";
+                echo $fila['numero_remision'];
+                echo "  ";
+                echo "<b>Fecha: </b>";
+                echo $fila["fecha"];
+                echo "  ";
+                echo "<b>Fecha Caducado: </b>";
+                echo $fila["fecha_caducado"];
+                echo"</p>";
+                echo"</div>";
+                echo"<br>";
+            }
+            echo "<a href='vistas/remisiones.php' style='color:red'><u>Ir a remisiones </u></a>";
+        ?>
+    </div>
+
+    <div class="caja" style="width:1110px; height:220px; overflow-y: auto">;
+        <h2>Alquileres Vencidos</h2>
+        <br>
+        <?php
+        
+            $conf= new Configuracion();
+            $conf->conectar();
+            
+            $query="SELECT * from alquileres where alerta='Vencido'";
+
+            $datos=mysqli_query($conf->conectar(),$query);
+
+            while($fila=mysqli_fetch_array($datos)){
+                echo"<div>";
+                echo"<p>";
+                echo "<b>Equipo: </b>";
+                echo $fila['equipo'];
+                echo "  ";
+                echo "<b>Fecha Alquiler: </b>";
+                echo $fila["fecha_alquiler"];
+                echo "  ";
+                echo "<b>Fecha Devolucion: </b>";
+                echo $fila["fecha_devolucion"];
+                echo"</p>";
+                echo"</div>";
+                echo "<br>";
+            }
+            echo "<a href='vistas/alquileres.php' style='color:red'><u>Ir a alquileres </u></a>";
+        ?>
+    </div>
+
+    <div class="caja" style="width:1110px; height:220px; overflow-y: auto">;
+        <h2>OT Pendientes</h2>
+        <br>
+        <?php
+        
+            $conf= new Configuracion();
+            $conf->conectar();
+            
+            $query="select * from repuestos;;";
+
+            $datos=mysqli_query($conf->conectar(),$query);
+
+            while($fila=mysqli_fetch_array($datos)){
+                echo"<div>";
+                echo"<p>";
+                echo "<b>Cod_OT: </b>";
+                echo $fila['codigo_orden_trabajo'];
+                echo "  ";
+                echo "<b>Ot: </b>";
+                echo $fila['tipo_orden_trabajo'];
+                echo "  ";
+                echo "<b>Codigo Factura: </b>";
+                echo $fila["codigo_factura"];
+                echo "  ";
+                echo "<b>Codigo Cotizacion: </b>";
+                echo $fila["codigo_cotizacion"];
+                echo " ";
+                echo "<b>Repuestos sugeridos: </b>";
+                echo $fila["repuestos"]; 
+                echo"</p>";
+                echo"</div>";
+                echo "<br>";
+            }
+            echo "<a href='vistas/ot.php' style='color:red'><u>Ir a alquileres </u></a>";
+        ?>
+    </div>
+
+    <style type="text/css">
+   
+   .caja { 
+        font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif; 
+        color: black; 
+        font-size: 18px; 
+        font-weight: 400; 
+        text-align: center; 
+        background: #FFD733; 
+        margin: 40px 0 25px; 
+        overflow: hidden; 
+        padding: 20px; 
+        border-radius: 35px 0px 35px 0px; 
+        -moz-border-radius: 35px 0px 35px 0px; 
+        -webkit-border-radius: 35px 0px 0px 0px; 
+        border: 2px solid black;
+
+    }
+    </style>
 
                     <div id="contenedor--crud"></div>
             </div>
@@ -186,6 +304,6 @@ if(!isset($_SESSION["usuario"]) || $_SESSION["usuario"] !== true){
     <script src="assets/js/main.js"></script>
 
 </body>
-<!--<script src="ot/assets/js/bootstrap.min.js"></script>-->
+<!--<script src="login/bootstrap-4.3.1/js/bootstrap.min.js"></script>-->
 
 </html>

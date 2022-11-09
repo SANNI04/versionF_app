@@ -139,18 +139,37 @@
                         <label for="serie">Serie:</label>
                         <input type="text" name="serie" id="serie" class="form-control">
                     </div> 
-                   <!-- <div class="col-md-6">
-                        <label for="firma_cliente">Firma cliente:</label>
-                        <input type="text" name="firma_cliente" id="firma_cliente" class="form-control">
-                    </div> -->
+                    <div class="col-md-6">
+                        <label for="fecha_ot_cierre">Fecha OT Cierre:</label>
+                        <input type="date" name="fecha_ot_cierre" id="fecha_ot_cierre" class="form-control">
+                    </div>
                 </div>    
-                <div class="row">    
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="categoria">Categoria:</label>
+                        <select type="text" name="categoria" id="categoria" class="form-control">
+                           <option>Por Cotizar</option>
+                            <option>Por Facturar</option>
+                            <option>Por Solicitar</option>
+
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="codigo_cotizacion">codigo_cotizacion:</label>
+                        <input type="text" name="codigo_cotizacion" id="codigo_cotizacion" class="form-control">
+                    </div>
+                </div>    
+                <div class="row">  
+                    <div class="col-md-6">
+                        <label for="codigo_factura">codigo_factura:</label>
+                        <input type="text" name="codigo_factura" id="codigo_factura" class="form-control">
+                    </div>                  
                     <div class="col-md-6">
                         <input type="hidden" class="form-control" id ="codigo_orden_trabajo" name="codigo_orden_trabajo">
                         <!--atributo autofocus HTML5. La función de este atributo es poner el cursor de manera activa en un input del formulario sin necesidad de hacer click en él-->
                     </div>
                 </div>
-            </div>  
+            </div> 
             <br><br>
             <div class="card-footer">
                 <table class="table table-striped" id="tablaOrdenTrabajo" width="100%"> 
@@ -161,12 +180,49 @@
                             <th>Cliente</th>
                             <th>Sucursal</th>
                             <th>Tecnico </th>
+                            <th>Fecha_ot_cierre</th>
+                            <th>Categoria</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
+
                     <tbody id="datos">
+                        
                     </tbody>
                 </table>
+                <script>
+
+<?php
+       /* 
+        $conf= new Configuracion();
+        $conf->conectar();
+        
+        $query="SELECT alerta from orden_trabajo";
+
+        $datos=mysqli_query($conf->conectar(),$query);
+        
+		if($datos['alerta'] =='Orden vencida') {
+  		    echo ' style="background-color: green; color: black;"';
+		} else {
+  		    echo ' style="background-color:red; color: black;"';
+		}*/
+	?>
+
+function colores(value,row,index){
+    if (value == 'Orden vigente'){
+        return "style='background-color:#70FF00;color:black;";
+        }
+    if (value == 'Orden con poca vigencia'){
+        return 'background-color:#FFee00;color:Black;';
+    }
+    if(value == 'Orden vencida'){
+        return 'background-color:#FF0000;color:Black;';
+    }
+    if(value == 'Orden sin Vigencia'){
+        return 'background-color:#70FF00;color:Black;';
+    }
+}
+</script>
             </div>
         </div>
     </div>    

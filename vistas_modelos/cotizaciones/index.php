@@ -61,7 +61,8 @@
      <!--  <a href="javascript:void(0)" class="easyui-linkbutton botonimprimir" iconCls="icon-print" plain="true" onclick="Pdf(data-codigo='<?/*php echo $fila['codigo'] */?>'); ">PDF</a>-->
      
        <!-- <button class='btn btn-info' onclick='Pdf("  + data.codigo  + ");'><span class='fa fa-file-pdf'></span> PDF</button>-->
-       <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="Pdf()">PDF</a>
+       <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-print" plain="true" onclick="Pdf()">PDF</a>
+       <a href="../vistas/detallescotizacion.php"  class="easyui-linkbutton" iconCls="icon-redo" plain="true" onclick="newUser()">Detalle cotizacion</a>
 
     <div id="dlg" class="easyui-dialog" style="width:500px; height:500px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons',maximizable:'false'">
         <form id="fm" method="post" novalidate style="margin:0;padding:20px 50px">
