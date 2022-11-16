@@ -30,6 +30,7 @@
 	<link rel="stylesheet" type="text/css" href="../vistas_modelos/themes/color.css">
     <script type="text/javascript" src="../js/jquery.min.js"></script>
     <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../js/datagrid-filter.js"></script>
 </head>
 </head>
 <body>
@@ -37,19 +38,19 @@
     <table id="dg" title="cotizaciones" class="easyui-datagrid" style="width: 1150px;;height:500px"
             url="../vistas_modelos/cotizaciones/get_users.php"
             toolbar="#toolbar" pagination="true"
-            rownumbers="true" fitColumns="true" singleSelect="true">
+            rownumbers="true" fitColumns="true" singleSelect="true" data-options="remoteSort:false,multiSort:true,singleSelect:true">
         <thead>
             <tr>
 		
-                <th field="cod_cotizacion" width="50">Codigo Cotización</th>
-                <th field="fecha_cotizacion" width="50">Fecha Cotización</th>
-                <th field="nombre_creador" width="50">Nombre Creador</th>
-                <th field="cliente" width="50">Cliente</th>
-                <th field="sucursal" width="50">Sucursal</th>
-                <th field="marca" width="50">Marca</th>
-                <th field="modelo" width="50">Modelo</th>
-                <th field="serie" width="50">Serie</th>
-                <th field="repuestos" width="50">Repuestos</th>
+                <th field="cod_cotizacion" width="50" data-options="sortable:true">Codigo Cotización</th>
+                <th field="fecha_cotizacion" width="50" data-options="sortable:true">Fecha Cotización</th>
+                <th field="nombre_creador" width="50" data-options="sortable:true">Nombre Creador</th>
+                <th field="cliente" width="50" data-options="sortable:true">Cliente</th>
+                <th field="sucursal" width="50" data-options="sortable:true">Sucursal</th>
+                <th field="marca" width="50" data-options="sortable:true">Marca</th>
+                <th field="modelo" width="50" data-options="sortable:true">Modelo</th>
+                <th field="serie" width="50" data-options="sortable:true">Serie</th>
+                <th field="repuestos" width="50" data-options="sortable:true">Repuestos</th>
                 
             </tr>
         </thead>
@@ -62,7 +63,7 @@
      
        <!-- <button class='btn btn-info' onclick='Pdf("  + data.codigo  + ");'><span class='fa fa-file-pdf'></span> PDF</button>-->
        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-print" plain="true" onclick="Pdf()">PDF</a>
-       <a href="../vistas/detallescotizacion.php"  class="easyui-linkbutton" iconCls="icon-redo" plain="true" onclick="newUser()">Detalle cotizacion</a>
+       <a href="../vistas/detallescotizacion.php" target="_blank" class="easyui-linkbutton" iconCls="icon-redo" plain="true" onclick="newUser()">Detalle cotizacion</a>
 
     <div id="dlg" class="easyui-dialog" style="width:500px; height:500px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons',maximizable:'false'">
         <form id="fm" method="post" novalidate style="margin:0;padding:20px 50px">
@@ -190,6 +191,11 @@
             <div style="margin-bottom:10px">
                 <input name="ciudad" class="easyui-textbox" required="true" label="Ciudad:" labelPosition="top" style="width:100%">
             </div>
+            <div style="margin-bottom:10px">
+                <select class="easyui-combobox" name="origen" label="Origen" labelPosition="top" style="width:100%" require="true">
+                    <option>OT</option>
+                    <option>Creada</option>
+                </select>
         </form>
     </div>
     <div id="dlg-buttons">
@@ -216,33 +222,10 @@
 
             var row = $('#dg').datagrid('getSelected');
             if (row){
-                url = '../vistas_modelos/cotizaciones/pdffactura.php?';
-                window.open(url + '&cod_cotizacion='+ row.cod_cotizacion, '_blank');
+                url = '../vistas_modelos/cotizaciones/pdfcotizacion.php?';
+                window.open(url + '&cod_cotizacion='+ '"'+row.cod_cotizacion+'"', '_blank');
             }
         }
-/*
-function Pdf(codigocotizacion){
-    var url = "../vistas_modelos/cotizaciones/pdffactura.php?";
-    $.ajax({
-        type: 'POST',
-        url: url,
-        data: Pdf,
-        success: function(){
-            window.open(url + '&codigocotizacion='+ codigocotizacion, '_blank');
-            //window.location = '../vista_modelos/cotizaciones';
-        },
-        error: function(){
-            alert ("Hay un error");
-        }
-    });
-}
-      */
-
-/*$('.botonimprimir').click(function() {
-        window.open('../vistas_modelos/cotizaciones/pdffactura.php?' + '&codigocotizacion=' + $(this).get(0).dataset.codigo '_blank');
-       
-      });*/
-
 
         function saveUser(){
             $('#fm').form('submit',{
@@ -265,6 +248,14 @@ function Pdf(codigocotizacion){
                 }
             });
         }
+        $(function(){
+            var dg = $('#dg').datagrid({
+                filterBtnIconCls:'icon-filter'
+            });
+            dg.datagrid('enableFilter',[{
+
+            }]);
+        })
     </script>
 </body>
 </html>

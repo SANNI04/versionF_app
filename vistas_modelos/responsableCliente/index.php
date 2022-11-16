@@ -24,6 +24,7 @@
 	<link rel="stylesheet" type="text/css" href="../vistas_modelos/themes/color.css">
     <script type="text/javascript" src="../js/jquery.min.js"></script>
     <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../js/datagrid-filter.js"></script>
 </head>
 </head>
 <body>
@@ -31,12 +32,12 @@
     <table id="dg" title="Responsable Cliente" class="easyui-datagrid" style="width:1150px;height:500px"
             url="../vistas_modelos/responsableCliente/get_users.php"
             toolbar="#toolbar" pagination="true"
-            rownumbers="true" fitColumns="true" singleSelect="true">
+            rownumbers="true" fitColumns="true" singleSelect="true" data-options="remoteSort:false,multiSort:true,singleSelect:true">
         <thead>
             <tr>
 		<th field="index_id" width="50">Id</th>
-                <th field="identificacion_cliente" width="50">Identificacion Cliente</th>
-                <th field="identificacion_usuario" width="50">Identificacion Usuario</th>
+                <th field="identificacion_cliente" width="50" data-options="sortable:true">Identificacion Cliente</th>
+                <th field="identificacion_usuario" width="50" data-options="sortable:true">Identificacion Usuario</th>
             </tr>
         </thead>
     </table>
@@ -117,6 +118,14 @@
                 }
             });
         }
+        $(function(){
+            var dg = $('#dg').datagrid({
+                filterBtnIconCls:'icon-filter'
+            });
+            dg.datagrid('enableFilter',[{
+
+            }]);
+        })
     </script>
 </body>
 </html>

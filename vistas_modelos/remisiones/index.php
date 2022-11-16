@@ -27,6 +27,7 @@
 	<link rel="stylesheet" type="text/css" href="../vistas_modelos/themes/color.css">
     <script type="text/javascript" src="../js/jquery.min.js"></script>
     <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../js/datagrid-filter.js"></script>
 </head>
 </head>
 <body>
@@ -34,21 +35,21 @@
     <table id="dg" title="Remisiones" class="easyui-datagrid" style="width:1150px;height:500px"
             url="../vistas_modelos/remisiones/get_users.php"
             toolbar="#toolbar" pagination="true"
-            rownumbers="true" fitColumns="true" singleSelect="true">
+            rownumbers="true" fitColumns="true" singleSelect="true"  data-options="remoteSort:false,multiSort:true,singleSelect:true">
         <thead>
             <tr>
-                <th field="numero_remision" width="50">Numero Remision</th>
-                <th field="fecha" width="50">Fecha</th>
-                <th field="cliente" width="50">Cliente</th>
-                <th field="sucursal" width="50">Sucursal</th>
-                <th field="tecnico" width="50">Tecnico</th>
-                <th field="nombre_referencia" width="50">nombre_referencia</th>
-                <th field="cantidad" width="50">Cantidad</th>
-                <th field="codigo_cotizacion" width="50">Codigo_cotizacion</th>
-                <th field="codigo_ordenes_compra" width="50">Cod Orden Compra</th>
-                <th field="codigo_factura" width="50">Cod Factura</th>
-                <th field="fecha_caducado" width="50">Fecha Cad</th>
-                <th field="alerta" data-options="styler:cellStyler, sortable:true" width="50">Alerta</th>
+                <th field="numero_remision" width="50" data-options="sortable:true">Numero Remision</th>
+                <th field="fecha" width="50" data-options="sortable:true">Fecha</th>
+                <th field="cliente" width="50 data-options="sortable:true"Cliente</th>
+                <th field="sucursal" width="50" data-options="sortable:true">Sucursal</th>
+                <th field="tecnico" width="50" data-options="sortable:true">Tecnico</th>
+                <th field="nombre_referencia" width="50" data-options="sortable:true">nombre_referencia</th>
+                <th field="cantidad" width="50" data-options="sortable:true">Cantidad</th>
+                <th field="codigo_cotizacion" width="50" data-options="sortable:true">Codigo_cotizacion</th>
+                <th field="codigo_ordenes_compra" width="50" data-options="sortable:true">Cod Orden Compra</th>
+                <th field="codigo_factura" width="50" data-options="sortable:true">Cod Factura</th>
+                <th field="fecha_caducado" width="50" data-options="sortable:true">Fecha Cad</th>
+                <th field="alerta" data-options="styler:cellStyler, sortable:true" width="50" data-options="sortable:true">Alerta</th>
             </tr>
         </thead>
     </table>
@@ -210,6 +211,14 @@
                 }
             });
         }
+        $(function(){
+            var dg = $('#dg').datagrid({
+                filterBtnIconCls:'icon-filter'
+            });
+            dg.datagrid('enableFilter',[{
+
+            }]);
+        })
     </script>
 </body>
 </html>

@@ -1,5 +1,7 @@
 var url = "./../controlador/otControlador.php";
 
+
+
 $(document).ready(function() {
     Consultar();
 })
@@ -38,8 +40,8 @@ function Consultar() {
     }).fail(function(response) {
         console.log(response);
     });
-
 }
+
 
 function ConsultarPorId(index_id) {
     $.ajax({
@@ -71,6 +73,8 @@ function ConsultarPorId(index_id) {
         document.getElementById('categoria').value=response.categoria;
         document.getElementById('codigo_cotizacion').value=response.codigo_cotizacion;
         document.getElementById('codigo_factura').value=response.codigo_factura;
+        document.getElementById('cod_orden_compra').value=response.cod_orden_compra;
+        document.getElementById('nota_entrada').value=response.nota_entrada;
         document.getElementById('alerta').value=response.alerta;
         document.getElementById('index_id').value=response.index_id; 
         BloquearBotones(false);
@@ -164,6 +168,8 @@ function Validar() {
     categoria = document.getElementById('categoria').value;
     codigo_cotizacion = document.getElementById('codigo_cotizacion').value;
     codigo_factura = document.getElementById('codigo_factura').value;
+    cod_orden_compra = document.getElementById('cod_orden_compra').value;
+    nota_entrada = document.getElementById('nota_entrada').value;
     
 
    
@@ -197,6 +203,8 @@ function retornarDatos(accion) {
         "categoria": document.getElementById('categoria').value,
         "codigo_cotizacion": document.getElementById('codigo_cotizacion').value,
         "codigo_factura": document.getElementById('codigo_factura').value,
+        "cod_orden_compra": document.getElementById('cod_orden_compra').value,
+        "nota_entrada": document.getElementById('nota_entrada').value,
         "accion": accion,
         "index_id":  document.getElementById('index_id').value
     };
@@ -225,6 +233,8 @@ function Limpiar() {
         document.getElementById('categoria').value = "";
         document.getElementById('codigo_cotizacion').value = "";
         document.getElementById('codigo_factura').value = "";
+        document.getElementById('cod_orden_compra').value = "";
+        document.getElementById('nota_entrada').value = "";
     BloquearBotones(true);
 }
 
@@ -246,21 +256,6 @@ function MostrarAlerta(titulo, descripcion, tipoAlerta) {
     );
 }
 
-
-/*$('.Pdf').click(function(){
-    window.location('../../../prefacturas/pdforden.php?' + '&index_id=' + $(this).get(0).data.index_id, '_blank')
-});*/
-
-/*
-function Pdf(index_id) {
-    
-    var url = "pdforden.php?";
-    window.open(url + '&index_id=' + $(this).get(0).dataset, index_id, '_blank');
-
-    console.log(index_id);
-}*/
-
-
 function Pdf(index_id){
     var url = "pdforden.php?";
     $.ajax({
@@ -276,3 +271,4 @@ function Pdf(index_id){
         }
     });
 }
+

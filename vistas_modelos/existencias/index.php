@@ -23,21 +23,22 @@
 	<link rel="stylesheet" type="text/css" href="../vistas_modelos/themes/color.css">
     <script type="text/javascript" src="../js/jquery.min.js"></script>
     <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../js/datagrid-filter.js"></script>
 </head>
 <body>
 
     <table id="dg" title="Existencias" class="easyui-datagrid" style="width:1150px;height:500px"
             url="../vistas_modelos/existencias/get_users.php"
             toolbar="#toolbar" pagination="true"
-            rownumbers="true" fitColumns="true" singleSelect="true">
+            rownumbers="true" fitColumns="true" singleSelect="true" data-options="remoteSort:false,multiSort:true,singleSelect:true">
 
         <thead>
             <tr>
-				<th field="index_id" width="50">Id</th>
-                <th field="codigo_referencia" width="50">Codigo Referencia</th>
-                <th field="cantidad" width="50">Cantidad</th>
-                <th field="fecha_ingreso" width="50">Fecha Ingreso</th>
-                <th field="codigo_orden_compra" width="50">Codigo Orden Compra</th>
+				<th field="index_id" width="50" data-options="sortable:true">Id</th>
+                <th field="codigo_referencia" width="50" data-options="sortable:true">Codigo Referencia</th>
+                <th field="cantidad" width="50" data-options="sortable:true">Cantidad</th>
+                <th field="fecha_ingreso" width="50" data-options="sortable:true">Fecha Ingreso</th>
+                <th field="codigo_orden_compra" width="50" data-options="sortable:true">Codigo Orden Compra</th>
             </tr>
         </thead>
     </table>
@@ -115,6 +116,14 @@
                 }
             });
         }
+        $(function(){
+            var dg = $('#dg').datagrid({
+                filterBtnIconCls:'icon-filter'
+            });
+            dg.datagrid('enableFilter',[{
+
+            }]);
+        })
     </script>
 </body>
 </html>

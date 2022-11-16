@@ -15,6 +15,7 @@
 	<link rel="stylesheet" type="text/css" href="../vistas_modelos/themes/color.css">
     <script type="text/javascript" src="../js/jquery.min.js"></script>
     <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../js/datagrid-filter.js"></script>
 </head>
 </head>
 <body>
@@ -22,16 +23,16 @@
     <table id="dg" title="Usuarios" class="easyui-datagrid" style="width:1150px;height:500px"
             url="../vistas_modelos/usuarios/get_users.php"
             toolbar="#toolbar" pagination="true"
-            rownumbers="true" fitColumns="true" singleSelect="true">
+            rownumbers="true" fitColumns="true" singleSelect="true"  data-options="remoteSort:false,multiSort:true,singleSelect:true">
         <thead>
             <tr>
 		<th field="index_id" width="50">Id</th>
-                <th field="nombre" width="50">Nombre Usuario</th>
-                <th field="identificacion_usuario" width="50">Identificacion</th>
-                <th field="primer_nombre" width="50">Primer Nombre</th>
-                <th field="segundo_nombre" width="50">Segundo Nombre</th>
-                <th field="primer_apellido" width="50">Primer Apellido</th>
-                <th field="segundo_apellido" width="50">Segundo Apellido</th>
+                <th field="nombre" width="50" data-options="sortable:true">Nombre Usuario</th>
+                <th field="identificacion_usuario" width="50" data-options="sortable:true">Identificacion</th>
+                <th field="primer_nombre" width="50" data-options="sortable:true">Primer Nombre</th>
+                <th field="segundo_nombre" width="50" data-options="sortable:true">Segundo Nombre</th>
+                <th field="primer_apellido" width="50" data-options="sortable:true">Primer Apellido</th>
+                <th field="segundo_apellido" width="50" data-options="sortable:true">Segundo Apellido</th>
                 <th field="role_id" width="50">Role Id</th>
                 
             </tr>
@@ -133,6 +134,14 @@
                 });
             }
         }
+        $(function(){
+            var dg = $('#dg').datagrid({
+                filterBtnIconCls:'icon-filter'
+            });
+            dg.datagrid('enableFilter',[{
+
+            }]);
+        })
     </script>
 </body>
 </html>

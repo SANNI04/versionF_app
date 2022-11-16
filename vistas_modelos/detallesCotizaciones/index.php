@@ -25,20 +25,22 @@
 	<link rel="stylesheet" type="text/css" href="../vistas_modelos/themes/color.css">
     <script type="text/javascript" src="../js/jquery.min.js"></script>
     <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../js/datagrid-filter.js"></script>
 </head>
 <body>
 
     <table id="dg" title="Detalle Cotizaciones" class="easyui-datagrid" style="width:1150px;height:500px"
             url="../vistas_modelos/detallesCotizaciones/get_users.php"
             toolbar="#toolbar" pagination="true"
-            rownumbers="true" fitColumns="true" singleSelect="true">
+            rownumbers="true" fitColumns="true" singleSelect="true" data-options="remoteSort:false,multiSort:true,singleSelect:true">
         <thead>
             <tr>
-				<th field="index_id" width="50">Id</th>
-                <th field="codigocotizacion" width="50">Codigo Cotizacion</th>
-                <th field="codigoproducto" width="50">Codigo Producto</th>
-                <th field="precio" width="50">Precio</th>
-                <th field="cantidad" width="50">Cantidad</th>
+				<th field="index_id" width="50" data-options="sortable:true">Id</th>
+                <th field="codigocotizacion" width="50" data-options="sortable:true">Codigo Cotizacion</th>
+                <th field="codigoproducto" width="50" data-options="sortable:true">Codigo Producto</th>
+                <th field="descuento" width="50" data-options="sortable:true">Descuento</th>
+                <th field="precio" width="50" data-options="sortable:true">Precio</th>
+                <th field="cantidad" width="50" data-options="sortable:true">Cantidad</th>
                 
             </tr>
         </thead>
@@ -78,6 +80,9 @@
                      }
                  ?>
             </select>
+            </div>
+                <div style="margin-bottom:10px">
+                <input name="descuento" class="easyui-textbox" required="true" label="Descuento:" labelPosition="top" style="width:100%">
             </div>
             <div style="margin-bottom:10px">
                 <input name="precio" class="easyui-textbox" required="true" label="Precio:" labelPosition="top" style="width:100%">
@@ -146,6 +151,14 @@
                 });
             }
         }
+        $(function(){
+            var dg = $('#dg').datagrid({
+                filterBtnIconCls:'icon-filter'
+            });
+            dg.datagrid('enableFilter',[{
+
+            }]);
+        })
     </script>
 </body>
 </html>

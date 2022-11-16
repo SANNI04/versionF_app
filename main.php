@@ -18,6 +18,9 @@ if(!isset($_SESSION["usuario"]) || $_SESSION["usuario"] !== true){
     <!--<link rel="stylesheet" href="login/bootstrap-4.3.1/css/bootstrap.min.css">-->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <script src="assets/js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../js/datagrid-filter.js"></script>
     
     <title>Sistema de Gestion de Inventarios</title>
 </head>
@@ -240,40 +243,19 @@ if(!isset($_SESSION["usuario"]) || $_SESSION["usuario"] !== true){
         ?>
     </div>
 
-    <div class="caja" style="width:1110px; height:220px; overflow-y: auto">;
+    <div class="caja" style="width:1110px; height:500px; overflow-y: auto">;
         <h2>OT Pendientes</h2>
         <br>
         <?php
-        
-            $conf= new Configuracion();
-            $conf->conectar();
-            
-            $query="select * from repuestos;;";
-
-            $datos=mysqli_query($conf->conectar(),$query);
-
-            while($fila=mysqli_fetch_array($datos)){
-                echo"<div>";
-                echo"<p>";
-                echo "<b>Cod_OT: </b>";
-                echo $fila['codigo_orden_trabajo'];
-                echo "  ";
-                echo "<b>Ot: </b>";
-                echo $fila['tipo_orden_trabajo'];
-                echo "  ";
-                echo "<b>Codigo Factura: </b>";
-                echo $fila["codigo_factura"];
-                echo "  ";
-                echo "<b>Codigo Cotizacion: </b>";
-                echo $fila["codigo_cotizacion"];
-                echo " ";
-                echo "<b>Repuestos sugeridos: </b>";
-                echo $fila["repuestos"]; 
-                echo"</p>";
-                echo"</div>";
-                echo "<br>";
-            }
-            echo "<a href='vistas/ot.php' style='color:red'><u>Ir a alquileres </u></a>";
+        echo"<iframe id='inlineFrameExample'";
+        echo"title='Inline Frame Example'";
+        echo"width='1000'";
+        echo "height='400'";
+        echo "src='otpendientes/tablaot.php'>";
+        echo"</iframe>";
+        echo"<br>";
+        echo"<br>";
+            echo "<a href='http://localhost/versionF_app/ot/vista/ot.php' style='color:red'><u>Ir a OT </u></a>";
         ?>
     </div>
 
@@ -293,10 +275,8 @@ if(!isset($_SESSION["usuario"]) || $_SESSION["usuario"] !== true){
         -moz-border-radius: 35px 0px 35px 0px; 
         -webkit-border-radius: 35px 0px 0px 0px; 
         border: 2px solid black;
-
     }
     </style>
-
                     <div id="contenedor--crud"></div>
             </div>
         </div>

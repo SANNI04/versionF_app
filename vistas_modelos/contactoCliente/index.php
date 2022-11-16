@@ -22,24 +22,25 @@
 	<link rel="stylesheet" type="text/css" href="../vistas_modelos/themes/color.css">
     <script type="text/javascript" src="../js/jquery.min.js"></script>
     <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../js/datagrid-filter.js"></script>
 </head>
 <body>
 
     <table id="dg" title="Contactos Cliente" class="easyui-datagrid" style="width:1150px;height:500px"
             url="../vistas_modelos/contactoCliente/get_users.php"
             toolbar="#toolbar" pagination="true"
-            rownumbers="true" fitColumns="true" singleSelect="true">
+            rownumbers="true" fitColumns="true" singleSelect="true" data-options="remoteSort:false,multiSort:true,singleSelect:true">
         <thead>
             <tr>
-				<th field="index_id" width="50">Id</th>
-                <th field="identificacion" width="50">Identificacion Contacto</th>
-                <th field="primer_nombre" width="50">Primer Nombre</th>
-                <th field="segundo_nombre" width="50">Segundo Nombre</th>
-                <th field="primer_apellido" width="50">Primer Apellido</th>
-                <th field="segundo_apellido" width="50">Segundo Apellido</th>
-                <th field="telefono" width="50">Telefono</th>
-                <th field="email" width="50">Email</th>
-                <th field="identificacion_cliente" width="50">Identificacion Cliente</th>
+				<th field="index_id" width="50" data-options="sortable:true">Id</th>
+                <th field="identificacion" width="50" data-options="sortable:true">Identificacion Contacto</th>
+                <th field="primer_nombre" width="50" data-options="sortable:true">Primer Nombre</th>
+                <th field="segundo_nombre" width="50" data-options="sortable:true">Segundo Nombre</th>
+                <th field="primer_apellido" width="50" data-options="sortable:true">Primer Apellido</th>
+                <th field="segundo_apellido" width="50" data-options="sortable:true">Segundo Apellido</th>
+                <th field="telefono" width="50" data-options="sortable:true">Telefono</th>
+                <th field="email" width="50" data-options="sortable:true">Email</th>
+                <th field="identificacion_cliente" width="50" data-options="sortable:true">Identificacion Cliente</th>
  
             </tr>
         </thead>
@@ -150,6 +151,14 @@
                 });
             }
         }
+        $(function(){
+            var dg = $('#dg').datagrid({
+                filterBtnIconCls:'icon-filter'
+            });
+            dg.datagrid('enableFilter',[{
+
+            }]);
+        })
     </script>
 </body>
 </html>

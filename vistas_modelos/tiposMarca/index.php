@@ -16,6 +16,7 @@
 	<link rel="stylesheet" type="text/css" href="../vistas_modelos/themes/color.css">
     <script type="text/javascript" src="../js/jquery.min.js"></script>
     <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../js/datagrid-filter.js"></script>
 </head>
 </head>
 <body>
@@ -23,12 +24,12 @@
     <table id="dg" title="Marcas" class="easyui-datagrid" style="width:1150px;height:500px"
             url="../vistas_modelos/tiposMarca/get_users.php"
             toolbar="#toolbar" pagination="true"
-            rownumbers="true" fitColumns="true" singleSelect="true">
+            rownumbers="true" fitColumns="true" singleSelect="true"  data-options="remoteSort:false,multiSort:true,singleSelect:true">
         <thead>
             <tr>
-		<th field="index_id" width="50">Id</th>
-                <th field="marca" width="50">Marca</th>
-                <th field="codigo_marca" width="50">Codigo Marca</th>
+		<th field="index_id" width="50" data-options="sortable:true">Id</th>
+                <th field="marca" width="50" data-options="sortable:true">Marca</th>
+                <th field="codigo_marca" width="50" data-options="sortable:true">Codigo Marca</th>
             </tr>
         </thead>
     </table>
@@ -109,6 +110,14 @@
                 });
             }
         }
+        $(function(){
+            var dg = $('#dg').datagrid({
+                filterBtnIconCls:'icon-filter'
+            });
+            dg.datagrid('enableFilter',[{
+
+            }]);
+        })
     </script>
 </body>
 </html>

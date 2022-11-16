@@ -23,6 +23,7 @@
 	<link rel="stylesheet" type="text/css" href="../vistas_modelos/themes/color.css">
     <script type="text/javascript" src="../js/jquery.min.js"></script>
     <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../js/datagrid-filter.js"></script>
 </head>
 </head>
 <body>
@@ -30,19 +31,19 @@
     <table id="dg" title="Referencias" class="easyui-datagrid" style="width:auto;height: 700px;"
             url="../vistas_modelos/referencias/get_users.php"
             toolbar="#toolbar" pagination="true"
-            rownumbers="true" fitColumns="true" singleSelect="true">
+            rownumbers="true" fitColumns="true" singleSelect="true"  data-options="remoteSort:false,multiSort:true,singleSelect:true">
         <thead>
             <tr>
 		<th field="index_id" width="50">Id</th>
-                <th field="nombre_referencia" width="50">Nombre Referencia</th>
-                <th field="codigo_referencia" width="50">Codigo Referencia</th>
-                <th field="alto" width="50">Alto</th>
-                <th field="largo" width="50">Largo</th>
-                <th field="ancho" width="50">Ancho</th>
-                <th field="marca" width="50">Marca</th>
-                <th field="descripcion" width="50">Descripcion</th>
-                <th field="precio_inicial" width="50">Precio Inicial</th>
-                <th field="ruta_foto" width="200">Ruta_foto</th>
+                <th field="nombre_referencia" width="50" data-options="sortable:true">Nombre Referencia</th>
+                <th field="codigo_referencia" width="50" data-options="sortable:true">Codigo Referencia</th>
+                <th field="alto" width="50"  data-options="sortable:true">Alto</th>
+                <th field="largo" width="50"  data-options="sortable:true">Largo</th>
+                <th field="ancho" width="50" data-options="sortable:true">Ancho</th>
+                <th field="marca" width="50" data-options="sortable:true">Marca</th>
+                <th field="descripcion" width="50" data-options="sortable:true">Descripcion</th>
+                <th field="precio_inicial" width="50" data-options="sortable:true">Precio Inicial</th>
+                <th field="ruta_foto" width="200" data-options="sortable:true">Ruta_foto</th>
             </tr>
         </thead>
     </table>
@@ -159,6 +160,14 @@
                 });
             }
         }
+        $(function(){
+            var dg = $('#dg').datagrid({
+                filterBtnIconCls:'icon-filter'
+            });
+            dg.datagrid('enableFilter',[{
+
+            }]);
+        })
     </script>
 </body>
 </html>

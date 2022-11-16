@@ -34,6 +34,8 @@
              $categoria = $_POST["categoria"];
              $codigo_cotizacion = $_POST["codigo_cotizacion"];
              $codigo_factura = $_POST["codigo_factura"];
+             $cod_orden_compra = $_POST["cod_orden_compra"];
+             $nota_entrada = $_POST["nota_entrada"];
             
 
           
@@ -84,7 +86,7 @@
                 return;
             }
             
-            $respuesta = $orden_trabajo->Guardar($codigo_orden_trabajo,$tipo_orden_trabajo,$cliente,$sucursal,$persona_encargada,$tecnico,$observaciones,$fecha_orden_trabajo,$equipo,$marca,$estado_equipo,$hora_inicio,$hora_finalizacion,$voltaje,$amperaje,$clavija,$modelo,$serie,$fecha_ot_cierre,$categoria,$codigo_cotizacion,$codigo_factura);
+            $respuesta = $orden_trabajo->Guardar($codigo_orden_trabajo,$tipo_orden_trabajo,$cliente,$sucursal,$persona_encargada,$tecnico,$observaciones,$fecha_orden_trabajo,$equipo,$marca,$estado_equipo,$hora_inicio,$hora_finalizacion,$voltaje,$amperaje,$clavija,$modelo,$serie,$fecha_ot_cierre,$categoria,$codigo_cotizacion,$codigo_factura,$cod_orden_compra,$nota_entrada);
             echo json_encode($respuesta);
             break;
             case "MODIFICAR":
@@ -110,6 +112,8 @@
             $categoria = $_POST["categoria"];
             $codigo_cotizacion = $_POST["codigo_cotizacion"];
             $codigo_factura = $_POST["codigo_factura"];
+            $cod_orden_compra = $_POST["cod_orden_compra"];
+            $nota_entrada = $_POST["nota_entrada"];
             $index_id = $_POST["index_id"];
 
             if($tipo_orden_trabajo == ""){
@@ -152,7 +156,7 @@
                 return;
             }
             
-            $respuesta = $orden_trabajo->Modificar($index_id,$codigo_orden_trabajo,$tipo_orden_trabajo,$cliente,$sucursal,$persona_encargada,$tecnico,$observaciones,$fecha_orden_trabajo,$equipo,$marca,$estado_equipo,$hora_inicio,$hora_finalizacion,$voltaje,$amperaje,$clavija,$modelo,$serie,$fecha_ot_cierre,$categoria,$codigo_cotizacion,$codigo_factura);
+            $respuesta = $orden_trabajo->Modificar($index_id,$codigo_orden_trabajo,$tipo_orden_trabajo,$cliente,$sucursal,$persona_encargada,$tecnico,$observaciones,$fecha_orden_trabajo,$equipo,$marca,$estado_equipo,$hora_inicio,$hora_finalizacion,$voltaje,$amperaje,$clavija,$modelo,$serie,$fecha_ot_cierre,$categoria,$codigo_cotizacion,$codigo_factura,$cod_orden_compra,$nota_entrada);
             echo json_encode($respuesta);
             break;
             

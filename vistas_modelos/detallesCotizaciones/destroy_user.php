@@ -7,7 +7,7 @@ $conf = new Configuracion();
 $conf->conectar();
 
 
-$sql = "update detallefactura set activo=0 where index_id=$index_id";
+$sql = "update detallecotizacion set activo=0 where index_id=$index_id";
 $query = mysqli_query($conf->conectar(),$sql);
 echo json_encode(array('success'=>true));
 ?>

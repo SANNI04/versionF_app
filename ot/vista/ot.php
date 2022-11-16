@@ -22,7 +22,7 @@
     <!--ESTILOS Sweet Alert-->
     <link rel="stylesheet" href="../assets/plugins/SweetAlert/dist/sweetalert2.min.css">
     <!--ESTILOS DATATABLES-->
-    <link rel="stylesheet" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="../assets/jquery.dataTables.min.css">
      <!--ESTILOS GENERALES-->
     <link rel="stylesheet" href="../estilos/estilos.css">
  
@@ -163,7 +163,17 @@
                     <div class="col-md-6">
                         <label for="codigo_factura">codigo_factura:</label>
                         <input type="text" name="codigo_factura" id="codigo_factura" class="form-control">
-                    </div>                  
+                    </div> 
+                    <div class="col-md-6">
+                        <label for="cod_orden_compra">Orden Compra:</label>
+                        <input type="text" name="cod_orden_compra" id="cod_orden_compra" class="form-control">
+                    </div> 
+                </div>  
+                <div class="row"> 
+                    <div class="col-md-6">
+                        <label for="nota_entrada">nota_entrada:</label>
+                        <input type="text" name="nota_entrada" id="nota_entrada" class="form-control">
+                    </div>                     
                     <div class="col-md-6">
                         <input type="hidden" class="form-control" id ="codigo_orden_trabajo" name="codigo_orden_trabajo">
                         <!--atributo autofocus HTML5. La función de este atributo es poner el cursor de manera activa en un input del formulario sin necesidad de hacer click en él-->
@@ -172,7 +182,7 @@
             </div> 
             <br><br>
             <div class="card-footer">
-                <table class="table table-striped" id="tablaOrdenTrabajo" width="100%"> 
+                <table class="table table-striped" id="tablaOrdenTrabajo" width="100%">
                     <thead class="thead-dark">
                         <tr>
                             <th>Codigo_orden_trabajo</th>
@@ -185,28 +195,22 @@
                             <th>Acciones</th>
                         </tr>
                     </thead>
-
                     <tbody id="datos">
                         
                     </tbody>
+                <tfoot>
+                        <tr>
+                            <th>Codigo_orden_trabajo</th>
+                            <th>Tipo_orden_trabajo</th>
+                            <th>Cliente</th>
+                            <th>Sucursal</th>
+                            <th>Tecnico </th>
+                            <th>Fecha_ot_cierre</th>
+                            <th>Categoria</th>
+                        </tr>
+                </tfoot> 
                 </table>
                 <script>
-
-<?php
-       /* 
-        $conf= new Configuracion();
-        $conf->conectar();
-        
-        $query="SELECT alerta from orden_trabajo";
-
-        $datos=mysqli_query($conf->conectar(),$query);
-        
-		if($datos['alerta'] =='Orden vencida') {
-  		    echo ' style="background-color: green; color: black;"';
-		} else {
-  		    echo ' style="background-color:red; color: black;"';
-		}*/
-	?>
 
 function colores(value,row,index){
     if (value == 'Orden vigente'){
@@ -233,7 +237,7 @@ function colores(value,row,index){
 <script src="../assets/js/jquery.js"></script>
 <script src="../assets/js/all.min.js"></script>
 <script src="../assets/js/bootstrap.min.js"></script>
-<script src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="../assets/jquery.dataTables.min.js"></script>
 <script src="../js/ot.js"></script>
 <script src="../assets/plugins/SweetAlert/dist/sweetalert2.all.min.js"></script>
 

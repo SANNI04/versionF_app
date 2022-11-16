@@ -33,6 +33,7 @@
 	<link rel="stylesheet" type="text/css" href="../vistas_modelos/themes/color.css">
     <script type="text/javascript" src="../js/jquery.min.js"></script>
     <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../js/datagrid-filter.js"></script>
 </head>
 </head>
 <body>
@@ -40,23 +41,23 @@
     <table id="dg" title="Orden Trabajo" class="easyui-datagrid" style="width:1150px;height:500px"
             url="../vistas_modelos/ordenTrabajo/get_users.php"
             toolbar="#toolbar" pagination="true"
-            rownumbers="true" fitColumns="true" singleSelect="true">
+            rownumbers="true" fitColumns="true" singleSelect="true"  data-options="remoteSort:false,multiSort:true,singleSelect:true">
         <thead>
             <tr>
-		        <th field="index_id" width="50">Id</th>
-                <th field="codigo_orden_trabajo" width="50">Codigo Orden</th>
-                <th field="tipo_orden_trabajo" width="50">Tipo Orden</th>
-                <th field="cliente" width="50">Cliente</th>
-                <th field="sucursal" width="50">Sucursal</th>
+		        <th field="index_id" width="50" data-options="sortable:true">Id</th>
+                <th field="codigo_orden_trabajo" width="50" data-options="sortable:true">Codigo Orden</th>
+                <th field="tipo_orden_trabajo" width="50" data-options="sortable:true">Tipo Orden</th>
+                <th field="cliente" width="50" data-options="sortable:true">Cliente</th>
+                <th field="sucursal" width="50" data-options="sortable:true">Sucursal</th>
                 <th field="persona_encargada" width="50">Persona Encargada</th>
-                <th field="tecnico" width="50">Tecnico</th>
-                <th field="observaciones" width="50">Observaciones</th>
-                <th field="fecha_orden_trabajo" width="50">Fecha Orden</th>
-                <th field="equipo" width="50">Equipo</th>
-                <th field="marca" width="50">Marca</th>
-                <th field="estado_equipo" width="50">Estado Equipo</th>
-                <th field="hora_inicio" width="50">Hora Inicio</th>
-                <th field="hora_finalizacion" width="50">Hora Finalizacion</th>
+                <th field="tecnico" width="50" data-options="sortable:true">Tecnico</th>
+                <th field="observaciones" width="50" data-options="sortable:true">Observaciones</th>
+                <th field="fecha_orden_trabajo" width="50" data-options="sortable:true">Fecha Orden</th>
+                <th field="equipo" width="50" data-options="sortable:true">Equipo</th>
+                <th field="marca" width="50" data-options="sortable:true">Marca</th>
+                <th field="estado_equipo" width="50" data-options="sortable:true">Estado Equipo</th>
+                <th field="hora_inicio" width="50" data-options="sortable:true">Hora Inicio</th>
+                <th field="hora_finalizacion" width="50" data-options="sortable:true">Hora Finalizacion</th>
 
             </tr>
         </thead>
@@ -217,6 +218,14 @@
                 }
             });
         }
+        $(function(){
+            var dg = $('#dg').datagrid({
+                filterBtnIconCls:'icon-filter'
+            });
+            dg.datagrid('enableFilter',[{
+
+            }]);
+        })
     </script>
 </body>
 </html>

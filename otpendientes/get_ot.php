@@ -5,18 +5,18 @@
 	$offset = ($page-1)*$rows;
 	$result = array();
 
-	include '../conexion/conn.php';
+	include '../vistas_modelos/conexion/conn.php';
 
 	$conf= new Configuracion();
 	$conf->conectar();
 
-	$sql = "SELECT count(*)  FROM detallecotizacion where activo=1";
+	$sql = "SELECT count(*)  FROM repuestos";
 	//$query = mysqli_query($conn, $sql);
 
 	$resultado= $conf->generarConsulta($sql);
 	$result["total"] = $resultado;
 
-	$sql="SELECT * FROM detallecotizacion where activo=1 limit $offset,$rows";
+	$sql="SELECT * FROM repuestos limit $offset,$rows";
 	
 	$resultado= $conf->generarConsulta2($sql);
 	$result["rows"] = $resultado;

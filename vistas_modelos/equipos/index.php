@@ -24,23 +24,24 @@
 	<link rel="stylesheet" type="text/css" href="../vistas_modelos/themes/color.css">
     <script type="text/javascript" src="../js/jquery.min.js"></script>
     <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../js/datagrid-filter.js"></script>
 </head>
 <body>
 
     <table id="dg" title="Equipos" class="easyui-datagrid" style="width:1150px;height:500px"
             url="../vistas_modelos/equipos/get_users.php"
             toolbar="#toolbar" pagination="true"
-            rownumbers="true" fitColumns="true" singleSelect="true">
+            rownumbers="true" fitColumns="true" singleSelect="true" data-options="remoteSort:false,multiSort:true,singleSelect:true">
         <thead>
             <tr>
 				<th field="index_id" width="50">Id</th>
-                <th field="codigo_equipo" width="50">Codigo Equipo</th>
-                <th field="nombre_modelo" width="50">Nombre Modelo</th>
-                <th field="codigo_marca" width="50">Codigo Marca</th>
-                <th field="serial" width="50">Serial</th>
-                <th field="referencia" width="50">Referencia</th>
-                <th field="estado_fisico" width="50">Estado Fisico</th>
-                <th field="estado_alquiler" width="50">Estado Alquiler</th>
+                <th field="codigo_equipo" width="50" data-options="sortable:true">Codigo Equipo</th>
+                <th field="nombre_modelo" width="50" data-options="sortable:true">Nombre Modelo</th>
+                <th field="codigo_marca" width="50" data-options="sortable:true">Codigo Marca</th>
+                <th field="serial" width="50" data-options="sortable:true">Serial</th>
+                <th field="referencia" width="50" data-options="sortable:true">Referencia</th>
+                <th field="estado_fisico" width="50" data-options="sortable:true">Estado Fisico</th>
+                <th field="estado_alquiler" width="50" data-options="sortable:true">Estado Alquiler</th>
                 
             </tr>
         </thead>
@@ -148,6 +149,14 @@
                 });
             }
         }
+        $(function(){
+            var dg = $('#dg').datagrid({
+                filterBtnIconCls:'icon-filter'
+            });
+            dg.datagrid('enableFilter',[{
+
+            }]);
+        })
     </script>
 </body>
 </html>

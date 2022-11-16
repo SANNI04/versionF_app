@@ -25,6 +25,7 @@
 	<link rel="stylesheet" type="text/css" href="../vistas_modelos/themes/color.css">
     <script type="text/javascript" src="../js/jquery.min.js"></script>
     <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../js/datagrid-filter.js"></script>
 </head>
 </head>
 <body>
@@ -32,23 +33,23 @@
     <table id="dg" title="Ordenes de Compra" class="easyui-datagrid" style="width:1150px;height:500px"
             url="../vistas_modelos/ordenesCompra/get_users.php"
             toolbar="#toolbar" pagination="true"
-            rownumbers="true" fitColumns="true" singleSelect="true">
+            rownumbers="true" fitColumns="true" singleSelect="true"  data-options="remoteSort:false,multiSort:true,singleSelect:true">
         <thead>
             <tr>
 		<th field="index_id" width="50">Id</th>
-                <th field="codigo_orden" width="50">Codigo Orden</th>
-                <th field="codigo_referencia" width="50">Codigo Referencia</th>
-                <th field="cantidad" width="50">Cantidad</th>
-                <th field="precio_unitario" width="50">Precio Unitario</th>
-                <th field="precio_total" width="50">Precio Total</th>
-                <th field="codigo_solicitante" width="50">Codigo Solicitante</th>
-                <th field="concepto" width="50">Concepto</th>
-                <th field="codigo_cliente_salida" width="50">Codigo Cliente Salida</th>
-                <th field="fecha_ingreso" width="50">Fecha Ingreso</th>
-                <th field="fecha_salida" width="50">Fecha Salida</th>
-                <th field="estatus" width="50">Estatus</th>
-                <th field="cod_cotizacion" width="50">Cod Cotizacion</th>
-                <th field="cod_factura" width="50">Cod Factura</th>
+                <th field="codigo_orden" width="50" data-options="sortable:true">Codigo Orden</th>
+                <th field="codigo_referencia" width="50" data-options="sortable:true">Codigo Referencia</th>
+                <th field="cantidad" width="50" data-options="sortable:true">Cantidad</th>
+                <th field="precio_unitario" width="50" data-options="sortable:true">Precio Unitario</th>
+                <th field="precio_total" width="50" data-options="sortable:true">Precio Total</th>
+                <th field="codigo_solicitante" width="50" data-options="sortable:true">Codigo Solicitante</th>
+                <th field="concepto" width="50" data-options="sortable:true">Concepto</th>
+                <th field="codigo_cliente_salida" width="50" data-options="sortable:true">Codigo Cliente Salida</th>
+                <th field="fecha_ingreso" width="50" data-options="sortable:true">Fecha Ingreso</th>
+                <th field="fecha_salida" width="50" data-options="sortable:true">Fecha Salida</th>
+                <th field="estatus" width="50" data-options="sortable:true">Estatus</th>
+                <th field="cod_cotizacion" width="50" data-options="sortable:true">Cod Cotizacion</th>
+                <th field="cod_factura" width="50" data-options="sortable:true">Cod Factura</th>
 
 
             </tr>
@@ -185,6 +186,14 @@
                 }
             });
         }
+        $(function(){
+            var dg = $('#dg').datagrid({
+                filterBtnIconCls:'icon-filter'
+            });
+            dg.datagrid('enableFilter',[{
+
+            }]);
+        })
     </script>
 </body>
 </html>

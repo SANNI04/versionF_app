@@ -18,11 +18,11 @@
             return $stmt->fetch(PDO::FETCH_OBJ);
         }
 
-        public function Guardar($codigo_orden_trabajo,$tipo_orden_trabajo,$cliente,$sucursal,$persona_encargada,$tecnico,$observaciones,$fecha_orden_trabajo,$equipo,$marca,$estado_equipo,$hora_inicio,$hora_finalizacion,$voltaje,$amperaje,$clavija,$modelo,$serie,$fecha_ot_cierre,$categoria,$codigo_cotizacion,$codigo_factura){
+        public function Guardar($codigo_orden_trabajo,$tipo_orden_trabajo,$cliente,$sucursal,$persona_encargada,$tecnico,$observaciones,$fecha_orden_trabajo,$equipo,$marca,$estado_equipo,$hora_inicio,$hora_finalizacion,$voltaje,$amperaje,$clavija,$modelo,$serie,$fecha_ot_cierre,$categoria,$codigo_cotizacion,$codigo_factura,$cod_orden_compra,$nota_entrada){
 
             $conexion = new Conexion();
 
-            $stmt = $conexion->prepare("INSERT INTO orden_trabajo (codigo_orden_trabajo,tipo_orden_trabajo,cliente,sucursal,persona_encargada,tecnico,observaciones,fecha_orden_trabajo,equipo,marca,estado_equipo,hora_inicio,hora_finalizacion,voltaje,amperaje,clavija,modelo,serie,fecha_ot_cierre,categoria,codigo_cotizacion,codigo_factura) values ((select consecutivo as :consecutivo from consecutivoot),:tipo_orden_trabajo,:cliente,:sucursal,:persona_encargada,:tecnico,:observaciones,:fecha_orden_trabajo,:equipo,:marca,:estado_equipo,:hora_inicio,:hora_finalizacion,:voltaje,:amperaje,:clavija,:modelo,:serie,:fecha_ot_cierre,:categoria,:codigo_cotizacion,:codigo_factura);");
+            $stmt = $conexion->prepare("INSERT INTO orden_trabajo (codigo_orden_trabajo,tipo_orden_trabajo,cliente,sucursal,persona_encargada,tecnico,observaciones,fecha_orden_trabajo,equipo,marca,estado_equipo,hora_inicio,hora_finalizacion,voltaje,amperaje,clavija,modelo,serie,fecha_ot_cierre,categoria,codigo_cotizacion,codigo_factura,cod_orden_compra,nota_entrada) values ((select consecutivo as :consecutivo from consecutivoot),:tipo_orden_trabajo,:cliente,:sucursal,:persona_encargada,:tecnico,:observaciones,:fecha_orden_trabajo,:equipo,:marca,:estado_equipo,:hora_inicio,:hora_finalizacion,:voltaje,:amperaje,:clavija,:modelo,:serie,:fecha_ot_cierre,:categoria,:codigo_cotizacion,:codigo_factura,:cod_orden_compra,:nota_entrada);");
             $stmt->bindValue(":consecutivo",$codigo_orden_trabajo, PDO::PARAM_STR);
             $stmt->bindValue(":tipo_orden_trabajo",$tipo_orden_trabajo, PDO::PARAM_STR);
             $stmt->bindValue(":cliente",$cliente, PDO::PARAM_STR);
@@ -45,6 +45,8 @@
             $stmt->bindValue(":categoria",$categoria, PDO::PARAM_STR);
             $stmt->bindValue(":codigo_cotizacion",$codigo_cotizacion, PDO::PARAM_STR);
             $stmt->bindValue(":codigo_factura",$codigo_factura, PDO::PARAM_STR);
+            $stmt->bindValue(":cod_orden_compra",$cod_orden_compra, PDO::PARAM_STR);
+            $stmt->bindValue(":nota_entrada",$nota_entrada, PDO::PARAM_STR);
 
             if($stmt->execute()){
                 return "OK";
@@ -54,10 +56,10 @@
 
         }
 
-        public function Modificar($index_id,$codigo_orden_trabajo,$tipo_orden_trabajo,$cliente,$sucursal,$persona_encargada,$tecnico,$observaciones,$fecha_orden_trabajo,$equipo,$marca,$estado_equipo,$hora_inicio,$hora_finalizacion,$voltaje,$amperaje,$clavija,$modelo,$serie,$fecha_ot_cierre,$categoria,$codigo_cotizacion,$codigo_factura){
+        public function Modificar($index_id,$codigo_orden_trabajo,$tipo_orden_trabajo,$cliente,$sucursal,$persona_encargada,$tecnico,$observaciones,$fecha_orden_trabajo,$equipo,$marca,$estado_equipo,$hora_inicio,$hora_finalizacion,$voltaje,$amperaje,$clavija,$modelo,$serie,$fecha_ot_cierre,$categoria,$codigo_cotizacion,$codigo_factura,$cod_orden_compra,$nota_entrada){
 
             $conexion = new Conexion();
-            $stmt = $conexion->prepare("UPDATE orden_trabajo SET codigo_orden_trabajo = :codigo_orden_trabajo,tipo_orden_trabajo = :tipo_orden_trabajo,cliente = :cliente,sucursal = :sucursal,persona_encargada = :persona_encargada,tecnico  = :tecnico,observaciones = :observaciones,fecha_orden_trabajo = :fecha_orden_trabajo,equipo = :equipo,marca = :marca,estado_equipo = :estado_equipo,hora_inicio = :hora_inicio,hora_finalizacion =:hora_finalizacion,voltaje =:voltaje,amperaje =:amperaje,clavija =:clavija,modelo =:modelo,serie =:serie,fecha_ot_cierre =:fecha_ot_cierre,categoria =:categoria,codigo_cotizacion =:codigo_cotizacion,codigo_factura =:codigo_factura where index_id = :index_id;");
+            $stmt = $conexion->prepare("UPDATE orden_trabajo SET codigo_orden_trabajo = :codigo_orden_trabajo,tipo_orden_trabajo = :tipo_orden_trabajo,cliente = :cliente,sucursal = :sucursal,persona_encargada = :persona_encargada,tecnico  = :tecnico,observaciones = :observaciones,fecha_orden_trabajo = :fecha_orden_trabajo,equipo = :equipo,marca = :marca,estado_equipo = :estado_equipo,hora_inicio = :hora_inicio,hora_finalizacion =:hora_finalizacion,voltaje =:voltaje,amperaje =:amperaje,clavija =:clavija,modelo =:modelo,serie =:serie,fecha_ot_cierre =:fecha_ot_cierre,categoria =:categoria,codigo_cotizacion =:codigo_cotizacion,codigo_factura =:codigo_factura,cod_orden_compra =:cod_orden_compra,nota_entrada =:nota_entrada where index_id = :index_id;");
             
             $stmt->bindValue(":codigo_orden_trabajo",$codigo_orden_trabajo, PDO::PARAM_STR);
             $stmt->bindValue(":tipo_orden_trabajo",$tipo_orden_trabajo, PDO::PARAM_STR);
@@ -81,6 +83,8 @@
             $stmt->bindValue(":categoria",$categoria, PDO::PARAM_STR);
             $stmt->bindValue(":codigo_cotizacion",$codigo_cotizacion, PDO::PARAM_STR);
             $stmt->bindValue(":codigo_factura",$codigo_factura, PDO::PARAM_STR);
+            $stmt->bindValue(":cod_orden_compra",$cod_orden_compra, PDO::PARAM_STR);
+            $stmt->bindValue(":nota_entrada",$nota_entrada, PDO::PARAM_STR);
             $stmt->bindValue(":index_id",$index_id, PDO::PARAM_INT);
 
             if($stmt->execute()){
